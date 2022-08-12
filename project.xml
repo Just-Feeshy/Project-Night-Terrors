@@ -6,6 +6,7 @@
 	<!-- _____________________________ Path Settings ____________________________ -->
 	
 	<source path="source" />
+	<source path="libs" />
 	
 	<assets path="assets" />
 
