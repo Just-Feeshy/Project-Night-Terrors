@@ -1,6 +1,0 @@
--xml xml/Windows.xml
-
--cp source
--main Main
---macro Preloader.compile()
---interp
