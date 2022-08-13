@@ -1,0 +1,8 @@
+--next
+
+-D windows
+-D desktop
+
+--macro Preloader.exportPath("target")
+
+hxml/cpp-target.hxml
