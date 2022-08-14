@@ -12,12 +12,21 @@ class PreloaderApp {
     * A lot of definitions.
     */
     private static function compile() {
-        var export = "export/";
+        var scriptLayout:String = '-main Main\n\n-lib json2object' 
+        #if hxcpp + "\n-lib hxcpp" #end
+        + #if windows "\n-lib discord_rpc" #end
+        + "\n\n";
+
+        var export:String = "export/";
+
+        scriptLayout += "-cp libs\n-cp source\n\n";
 
         #if windows
         export += "windows/";
+        scriptLayout += "-D windows\n";
         #elseif mac
         export += "mac/";
+        scriptLayout += "-D mac\n";
         #end
 
         #if debug
@@ -30,28 +39,28 @@ class PreloaderApp {
 
         export += build + "/";
 
-        #if (desktop || console || mobile)
         if(!FileSystem.exists("./export/haxe")) {
             FileSystem.createDirectory("./export/haxe");
         }
 
         #if desktop
-        var device:String = "-D desktop";
+        scriptLayout += "-D desktop\n\n";
         #elseif console
-        var device:String = "-D console";
+        scriptLayout += "-D console\n\n";
         #elseif mobile
-        var device:String = "-D mobile";
+        scriptLayout += "-D mobile\n\n";
         #end
 
-        var initName:String = "InitializeApp";
-        
-        File.saveContent('./export/haxe/${initName}.hx', File.getContent('./tools/${initName}.hx'));
-        File.saveContent('./export/haxe/${build}.hxml', '${device}\n\n-cp source\n-cp libs\n\n-main ${initName}\n-cpp ${export}');
-
-        var cppDirectory:String = Path.combine(Sys.getCwd(), "export/hxml");
-
-        System.runCommand(cppDirectory, "haxe", ['${build}.hxml']);
+        #if hxcpp
+        scriptLayout += '-cpp ${Path.combine(Sys.getCwd(), export)}\n';
         #end
+
+        #if debug
+        scriptLayout += "\n-debug";
+        #end
+
+        File.saveContent('./export/haxe/${build}.hxml', scriptLayout);
+        System.runCommand(Sys.getCwd() + "/source", "haxe", ['../export/haxe/${build}.hxml']);
     }
 
     public static function main():Void {
