@@ -52,7 +52,7 @@ class PreloaderApp {
         #end
 
         #if hxcpp
-        scriptLayout += '-cpp ${Path.combine(Sys.getCwd(), export)}\n';
+        scriptLayout += '-cpp ${Path.combine(Sys.getCwd(), export)}';
         #end
 
         #if debug
