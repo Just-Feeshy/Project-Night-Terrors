@@ -44,6 +44,7 @@ class PreloaderApp {
         #end
 
         var initName:String = "InitializeApp";
+        
         File.saveContent('./export/haxe/${initName}.hx', File.getContent('./tools/${initName}.hx'));
         File.saveContent('./export/haxe/${build}.hxml', '${device}\n\n-cp source\n-cp libs\n\n-main ${initName}\n-cpp ${export}');
 
