@@ -1,8 +1,7 @@
---next
+-lib hxp
 
 -D windows
 -D desktop
 
---macro Preloader.exportPath("target")
-
-hxml/cpp-target.hxml
+-main PreloaderApp
+--interp
