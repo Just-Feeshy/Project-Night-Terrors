@@ -6,7 +6,7 @@ class InitializeApp {
     }
 
     private static function create():Void {
-        var xmlData:String = Assets.getText(Description);
+        //var xmlData:String = Assets.getText(Description);
 
         //if(Assets.exists()) {
 
