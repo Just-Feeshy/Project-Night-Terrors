@@ -6,8 +6,6 @@ import hxp.System;
 import sys.FileSystem;
 import sys.io.File;
 
-import haxe.xml.Access;
-
 class PreloaderApp {
 
     /**
