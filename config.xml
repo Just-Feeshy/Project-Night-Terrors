@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<application>
-    <!-- ____________________________ Window Config ___________________________ -->
-
-    <window title="Spoopy Engine" width="1280" height="720" backgroundColor="#000000"/>
-</application>

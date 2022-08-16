@@ -1,11 +1,13 @@
 package;
 
-class Main {
-    static function main():Void {
-        #if windows
-        trace("hello world");
-        #end
+import lime.app.Application;
 
-        trace("no hehe");
-    }
+import openfl.utils.Assets;
+
+class Main extends Application
+{
+	public function new()
+	{
+		super();
+	}
 }

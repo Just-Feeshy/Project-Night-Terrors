@@ -1,8 +1,0 @@
--lib hxcpp
--lib hxp
-
--D windows
--D desktop
-
--main PreloaderApp
---interp
