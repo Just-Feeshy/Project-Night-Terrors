@@ -22,7 +22,7 @@ class Main extends Application {
 		if(game != null) {
 			game.init();
 			
-			game.resizeWindow(window.width, window.height);
+			game.resizeGame(window.width, window.height);
 		}
 
 		window.onActivate.remove(__onLimeWindowActivate.bind(window));
@@ -30,7 +30,7 @@ class Main extends Application {
 
 	private function __onLimeWindowResize(window:Window, width:Int, height:Int):Void {
 		if(game != null) {
-			game.resizeWindow(width, height);
+			game.resizeGame(width, height);
 		}
 	}
 }

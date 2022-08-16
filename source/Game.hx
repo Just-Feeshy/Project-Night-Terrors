@@ -13,6 +13,8 @@ class Game {
     var height:Int = 0;
 
     public function new(width:Int = 0, height:Int = 0, _state:Class<FeshStates>) {
+        this.width = width;
+        this.height = height;
         this._state = _state;
     }
 
@@ -30,7 +32,7 @@ class Game {
     }
 
     @:allow(Main)
-    inline function resizeWindow(width:Int, height:Int):Void {
+    inline function resizeGame(width:Int, height:Int):Void {
         this.width = width;
         this.height = height;
     }
