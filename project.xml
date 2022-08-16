@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<meta title="Serious Project" package="com.feeshy.seriousproject" version="0.0.1" company="Feeshmora" />
-	<app main="Main" path="export" file="SeriousProject" />
+	<meta title="Spoopy Game" package="com.feeshy.spoopyengine" version="0.0.1" company="Feeshmora" />
+	<app main="Main" path="export" file="SpoopyEngine" />
+
+	<!-- ____________________________ Window Settings ___________________________ -->
+
+	<!--These window settings apply to all targets-->
+	<window width="1280" height="720" fps="" background="#000000" hardware="true" vsync="false" />
+
+	<!--HTML5-specific-->
+	<window if="html5" resizable="true" />
+
+	<!--Desktop-specific-->
+	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
+
+	<!--Mobile-specific-->
+	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
+
+	<!--Switch-specific-->
+	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 	
