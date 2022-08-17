@@ -66,6 +66,10 @@ class Fesh {
     }
 
     static function set_stepFramerate(value:Int):Int {
+        if(value > framerate) {
+            value = framerate;
+        }
+
         return stepFramerate = value;
     }
 }
