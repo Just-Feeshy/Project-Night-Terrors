@@ -10,7 +10,9 @@ class Scene {
     public var elapsed(default, null):Float = 0;
 
     var _state:Class<FeshStates>;
+
     var _openFullscreen:Bool;
+    var _onFocusDebounce:Bool;
 
     var _startTime:Int = 0;
 
@@ -27,20 +29,45 @@ class Scene {
     }
 
     public function eachFrame():Void {
+        if(Fesh.useFixedTimestep) {
+            //elapsed = Fesh.timeScale * 
+        }else {
+
+        }
+
         update(elapsed);
     }
 
     public function update(elapsed:Float) {
-        //if(Fesh.)
+
     }
 
     public function init(window:Window):Void {
+        initialized = true;
+
         _startTime = System.getTimer();
         resizeScene(window.width, window.height);
 
         #if desktop
         window.fullscreen = _openFullscreen;
         #end
+    }
+
+    public function onFocusIn():Void {
+        #if (desktop && lime_legacy)
+		if (!_onFocusDebounce) {
+			_onFocusDebounce = true;
+			return;
+		}
+		#end
+
+        #if mobile
+        resizeScene(window.width, window.height); //Just incase if I'mma make this mobile.
+        #end
+    }
+
+    public function onFocusOut():Void {
+        
     }
 
     inline public function ticks():Float {

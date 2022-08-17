@@ -17,6 +17,8 @@ class Main extends Application {
 	private function __initLimeEvents(window:Window):Void {
 		window.onActivate.add(__onLimeWindowActivate.bind(window));
 		window.onResize.add(__onLimeWindowResize.bind(window));
+		window.onFocusIn.add(__onLimeWindowFocusIn.bind(window));
+		window.onFocusOut.add(__onLimeWindowFocusOut.bind(window));
 		window.onRender.add(__onLimeRenderContext);
 	}
 
@@ -40,5 +42,13 @@ class Main extends Application {
 		if(game != null) {
 			game.eachFrame();
 		}
+	}
+
+	private function __onLimeWindowFocusIn(_):Void {
+		game.onFocusIn();
+	}
+
+	private function __onLimeWindowFocusOut(_):Void {
+		game.onFocusOut();
 	}
 }
