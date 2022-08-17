@@ -1,28 +1,30 @@
 package;
 
+import lime.graphics.RenderContext;
 import lime.app.Application;
 import lime.ui.Window;
 
 class Main extends Application {
-	var game:Game;
+	var game:Game; //Make da game itself.
 
 	public function new() {
 		super();
 
-		game = new Game(FeshStates);
+		game = new Game(FeshStates, true);
 		onCreateWindow.add(__initLimeEvents.bind());
 	}
 
 	private function __initLimeEvents(window:Window):Void {
 		window.onActivate.add(__onLimeWindowActivate.bind(window));
 		window.onResize.add(__onLimeWindowResize.bind(window));
+		window.onRender.add(__onLimeRenderContext);
 	}
 
 	private function __onLimeWindowActivate(window:Window):Void {
 		if(game != null) {
-			game.init();
+			game.init(window);
 			
-			game.resizeGame(window.width, window.height);
+			game.resizeScene(window.width, window.height);
 		}
 
 		window.onActivate.remove(__onLimeWindowActivate.bind(window));
@@ -30,7 +32,13 @@ class Main extends Application {
 
 	private function __onLimeWindowResize(window:Window, width:Int, height:Int):Void {
 		if(game != null) {
-			game.resizeGame(width, height);
+			game.resizeScene(width, height);
+		}
+	}
+
+	private function __onLimeRenderContext(context:RenderContext):Void {
+		if(game != null) {
+			game.eachFrame();
 		}
 	}
 }

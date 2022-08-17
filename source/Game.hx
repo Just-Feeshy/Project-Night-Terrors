@@ -1,39 +1,9 @@
 package;
 
-import lime.system.System;
+class Game extends Scene {
+    public function new(_state:Class<FeshStates>, fullscreen:Bool = true) {
+        super(_state, fullscreen);
 
-class Game {
-    var _state:Class<FeshStates>;
-
-    var _startTime:Int = 0;
-
-    var initialized:Bool = false;
-
-    var width:Int = 0;
-    var height:Int = 0;
-
-    public function new(width:Int = 0, height:Int = 0, _state:Class<FeshStates>) {
-        this.width = width;
-        this.height = height;
-        this._state = _state;
-    }
-
-    public function init():Void {
-        initialized = true;
-
-        trace("hehe");
-    }
-
-    inline public function ticks():Float {
-        if(initialized)
-            return System.getTimer() - _startTime;
-        else
-            return 0;
-    }
-
-    @:allow(Main)
-    inline function resizeGame(width:Int, height:Int):Void {
-        this.width = width;
-        this.height = height;
+        Fesh.attachGame(this);
     }
 }
