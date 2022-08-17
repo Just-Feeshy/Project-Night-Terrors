@@ -31,7 +31,7 @@ class Scene {
     }
 
     public function update(elapsed:Float) {
-
+        if(Fesh.)
     }
 
     public function init(window:Window):Void {
