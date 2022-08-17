@@ -10,7 +10,7 @@ class Main extends Application {
 	public function new() {
 		super();
 
-		game = new Game(FeshStates, true);
+		game = new Game(FeshStates, #if debug false #else true #end);
 		onCreateWindow.add(__initLimeEvents.bind());
 	}
 
