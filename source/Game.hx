@@ -1,5 +1,7 @@
 package;
 
+import states.FeshStates;
+
 /**
 * Main scenery class.
 */

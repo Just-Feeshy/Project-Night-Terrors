@@ -2,6 +2,8 @@ package;
 
 import lime.app.Application;
 
+import states.FeshStates;
+
 class Main extends Application {
 	var game:Game; //Make da game itself.
 

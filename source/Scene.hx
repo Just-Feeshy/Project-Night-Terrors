@@ -4,6 +4,8 @@ import lime.graphics.RenderContext;
 import lime.system.System;
 import lime.ui.Window;
 
+import states.FeshStates;
+
 class Scene {
     /**
     * How many times the game should to step each second.
