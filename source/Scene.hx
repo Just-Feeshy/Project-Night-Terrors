@@ -19,9 +19,29 @@ class Scene {
     public var elapsed(default, null):Float = 0;
 
     /**
-    * Store the amount of milliseconds the since last update loop.
+    * Whether the scene should be paused when focus is lost or not.
     */
-    var _accumulator:Float;
+    public var focusPause:Bool = true;
+
+    /**
+    * Store the amount of milliseconds since the last update loop.
+    */
+    var _accumulator:Float = 0;
+
+    /**
+    * Milliseconds that has passed.
+    */
+    var _tickCounter:Int = 0;
+
+    /**
+    * Total milliseconds that has passed.
+    */
+    var _averageDeltaTime:Int = 0;
+
+    /**
+    * Milliseconds of the last time step.
+    */
+    var _lastStepMilliseconds:Float = 0;
 
     var _stateClass:Class<FeshStates>;
 
@@ -29,15 +49,11 @@ class Scene {
 
     var _openFullscreen:Bool;
     var _onFocusDebounce:Bool;
-
-    var _averageDeltaTime:Float = 0;
-    var _lastStepMilliseconds:Float = 0;
+    var _onLostFocus:Bool;
     
     var _startTime:Int = 0;
 
     var window:Window;
-
-    var initialized:Bool = false;
 
     public function new(_stateClass:Class<FeshStates>, fullscreen:Bool = false) {
         this._stateClass = _stateClass;
@@ -48,6 +64,12 @@ class Scene {
     }
 
     public function step():Void {
+        if(Fesh.useFixedTimestep) {
+            elapsed = Fesh.timeScale * Fesh.stepPerSeconds;
+        }else {
+            elapsed = Fesh.timeScale * (_lastStepMilliseconds / Fesh.fixedTimestep); //shitty timestep
+        }
+
         update(elapsed);
     }
 
@@ -56,10 +78,9 @@ class Scene {
     }
 
     public function init(window:Window):Void {
-        initialized = true;
-
         _startTime = System.getTimer();
         _averageDeltaTime = ticks();
+
         resizeScene(window.width, window.height);
 
         #if desktop
@@ -78,10 +99,12 @@ class Scene {
         #if mobile
         resizeScene(window.width, window.height); //Just incase if I'mma make this mobile.
         #end
+
+        _onLostFocus = false;
     }
 
     public function onFocusOut():Void {
-        
+        _onLostFocus = true;
     }
 
     public function initWindow(window:Window):Void {
@@ -89,11 +112,8 @@ class Scene {
         __initLimeEvents(window);
     }
 
-    inline public function ticks():Float {
-        if(initialized)
-            return System.getTimer() - _startTime;
-        else
-            return 0;
+    inline public function ticks():Int {
+        return System.getTimer() - _startTime;
     }
 
     inline function resizeScene(width:Int, height:Int):Void {
@@ -133,10 +153,26 @@ class Scene {
 	}
 
 	@:noCompletion function __onLimeRenderContext(context:RenderContext):Void {
-		if(Fesh.useFixedTimestep) {
-            elapsed = Fesh.timeScale * Fesh.stepPerSeconds;
-        }else {
+        _tickCounter = ticks();
+        _lastStepMilliseconds = _tickCounter - _averageDeltaTime;
+        _averageDeltaTime = _tickCounter;
 
+        if(!_onLostFocus || !focusPause) {
+            if(Fesh.useFixedTimestep) {
+                _accumulator += _lastStepMilliseconds;
+
+                if(_accumulator > Fesh.maxAccumulation) {
+                    _accumulator = Fesh.maxAccumulation;
+                }
+                
+                while(_accumulator >= Fesh.stepPerMilliseconds) {
+                    step();
+
+                    _accumulator -= Fesh.stepPerMilliseconds;
+                }
+            }else {
+                step();
+            }
         }
 	}
 

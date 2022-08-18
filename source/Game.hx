@@ -9,6 +9,7 @@ class Game extends Scene {
     @:allow(Fesh) var resetGame:Bool = false;
 
     public function new(_state:Class<FeshStates>, fullscreen:Bool = true) {
+        focusPause = false;
         super(_state, fullscreen);
 
         Fesh.attachGame(this);
@@ -24,6 +25,8 @@ class Game extends Scene {
             Fesh.reset();
             resetGame = false;
         }
+
+        trace("oh");
 
         super.step();
     }
