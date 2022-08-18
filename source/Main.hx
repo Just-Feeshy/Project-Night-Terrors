@@ -9,6 +9,8 @@ class Main extends Application {
 
 	public function new() {
 		super();
+		
+		trace("hehe uwu");
 
 		game = new Game(FeshStates, #if debug false #else true #end);
 		game.initFramerate();
