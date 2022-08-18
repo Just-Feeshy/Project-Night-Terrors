@@ -45,7 +45,11 @@ class Scene {
         #end
     }
 
-    public function update(elapsed:Float) {
+    public function step():Void {
+        update(elapsed);
+    }
+
+    public function update(elapsed:Float):Void {
 
     }
 
@@ -132,8 +136,6 @@ class Scene {
         }else {
 
         }
-
-        update(elapsed);
 	}
 
 	@:noCompletion function __onLimeWindowFocusIn(window:Window):Void {

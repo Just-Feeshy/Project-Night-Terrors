@@ -47,17 +47,28 @@ class Fesh {
     */
     public static var sceneries(default, null):Array<Scene> = [];
 
-    public static function attachGame(game:Game):Void {
+    public static inline function attachGame(game:Game):Void {
         Fesh.game = game;
     }
 
-    public static function updateMaxAccumulation():Void {
+    /**
+	 * Re-launch game.
+	 */
+	public static inline function resetGame():Void {
+        if(game != null) game.resetGame = true;
+    }
+
+    public static inline function updateMaxAccumulation():Void {
         if(maxAccumulation < stepPerMilliseconds) {
             maxAccumulation = stepPerMilliseconds;
         }
     }
 
-    static function set_framerate(value:Int):Int {
+    @:allow(Game) static inline function reset():Void {
+        //Reset EVERYTHING
+    }
+
+    static inline function set_framerate(value:Int):Int {
         Log.info("Fesh.framerate: must be less than any scenes stepFramerate.");
 
         stepPerMilliseconds = Math.abs((1 / fixedTimestep) * value);
