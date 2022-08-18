@@ -12,5 +12,6 @@ class Game extends Scene {
 
     public function initFramerate(framerate:Int = 60, stepFramerate:Int = 60):Void {
         Fesh.framerate = framerate;
+        this.stepFramerate = stepFramerate;
     }
 }

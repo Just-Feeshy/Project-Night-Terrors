@@ -5,10 +5,21 @@ import lime.system.System;
 import lime.ui.Window;
 
 class Scene {
+    /**
+    * How many times the game should to step each second.
+    * More steps USUALLY means greater responsiveness.
+    */
+    public var stepFramerate(default, set):Int = 60;
+
     public var width(default, null):Int = 0;
     public var height(default, null):Int = 0;
 
     public var elapsed(default, null):Float = 0;
+
+    /**
+    * Store the amount of milliseconds the since last update loop.
+    */
+    var _accumulator:Float;
 
     var _stateClass:Class<FeshStates>;
 
@@ -17,6 +28,9 @@ class Scene {
     var _openFullscreen:Bool;
     var _onFocusDebounce:Bool;
 
+    var _averageDeltaTime:Float = 0;
+    var _lastStepMilliseconds:Float = 0;
+    
     var _startTime:Int = 0;
 
     var window:Window;
@@ -39,6 +53,7 @@ class Scene {
         initialized = true;
 
         _startTime = System.getTimer();
+        _averageDeltaTime = ticks();
         resizeScene(window.width, window.height);
 
         #if desktop
@@ -103,7 +118,7 @@ class Scene {
 		window.onActivate.remove(__onLimeWindowActivate.bind(window));
 	}
 
-	@:noCompletion private function __onLimeWindowResize(window:Window, width:Int, height:Int):Void {
+	@:noCompletion function __onLimeWindowResize(window:Window, width:Int, height:Int):Void {
         if (this.window != window || window == null) { 
             return;
         }
@@ -111,9 +126,9 @@ class Scene {
 		resizeScene(width, height);
 	}
 
-	@:noCompletion private function __onLimeRenderContext(context:RenderContext):Void {
+	@:noCompletion function __onLimeRenderContext(context:RenderContext):Void {
 		if(Fesh.useFixedTimestep) {
-            //elapsed = Fesh.timeScale * 
+            elapsed = Fesh.timeScale * Fesh.stepPerSeconds;
         }else {
 
         }
@@ -121,7 +136,7 @@ class Scene {
         update(elapsed);
 	}
 
-	@:noCompletion private function __onLimeWindowFocusIn(window:Window):Void {
+	@:noCompletion function __onLimeWindowFocusIn(window:Window):Void {
         if (this.window != window || window == null) { 
             return;
         }
@@ -129,11 +144,29 @@ class Scene {
 		onFocusIn();
 	}
 
-	@:noCompletion private function __onLimeWindowFocusOut(window:Window):Void {
+	@:noCompletion function __onLimeWindowFocusOut(window:Window):Void {
         if (this.window != window || window == null) { 
             return;
         }
 
 		onFocusOut();
 	}
+
+    @:access(Fesh) @:noCompletion function set_stepFramerate(value:Int):Int {
+        if(value > Fesh.framerate) {
+            value = Fesh.framerate;
+            Log.warn("stepFramerate: should be less than or equals to Fesh.framerate.");
+        }
+
+        stepFramerate = Std.int(Math.abs(value));
+
+        if(window != null) {
+            window.frameRate = stepFramerate;
+        }
+
+        Fesh.maxAccumulation = (2 / Fesh.fixedTimestep) / stepFramerate - 1;
+        Fesh.updateMaxAccumulation();
+
+        return stepFramerate;
+    }
 }

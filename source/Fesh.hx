@@ -1,8 +1,11 @@
 package;
 
-import lime.system.System;
-
 class Fesh {
+    /**
+    * Maximum accumulation.
+    */
+	public static var maxAccumulation(default, null):Float;
+
     /**
     * Milliseconds of time per step of the game loop.
     */
@@ -18,12 +21,6 @@ class Fesh {
     * Better framerates usually means better collisions and smoother motion. (Which is what I want.)
     */
     public static var framerate(default, set):Int = 60;
-
-    /**
-    * How many times the game should to step each second.
-    * More steps USUALLY means greater responsiveness.
-    */
-    public static var stepFramerate(default, set):Int = 60;
 
     /**
     * WARNING: Changing this can lead to issues with the physics system.
@@ -54,22 +51,20 @@ class Fesh {
         Fesh.game = game;
     }
 
-    static function set_framerate(value:Int):Int {
-        if(value < stepFramerate) {
-            value = stepFramerate;
+    public static function updateMaxAccumulation():Void {
+        if(maxAccumulation < stepPerMilliseconds) {
+            maxAccumulation = stepPerMilliseconds;
         }
-
-        stepPerMilliseconds = Math.abs(1000 / value);
-        stepPerSeconds = Math.abs(value / 1000);
-
-        return framerate = value;
     }
 
-    static function set_stepFramerate(value:Int):Int {
-        if(value > framerate) {
-            value = framerate;
-        }
+    static function set_framerate(value:Int):Int {
+        Log.info("Fesh.framerate: must be less than any scenes stepFramerate.");
 
-        return stepFramerate = value;
+        stepPerMilliseconds = Math.abs((1 / fixedTimestep) * value);
+        stepPerSeconds = Math.abs(value * fixedTimestep);
+
+        updateMaxAccumulation();
+
+        return framerate = value;
     }
 }

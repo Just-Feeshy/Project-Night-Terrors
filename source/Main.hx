@@ -1,7 +1,6 @@
 package;
 
 import lime.app.Application;
-import lime.ui.Window;
 
 class Main extends Application {
 	var game:Game; //Make da game itself.
@@ -10,6 +9,7 @@ class Main extends Application {
 		super();
 
 		game = new Game(FeshStates, #if debug false #else true #end);
+		game.initFramerate();
 		onCreateWindow.add(game.initWindow.bind());
 	}
 }
