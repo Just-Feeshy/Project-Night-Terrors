@@ -1,5 +1,6 @@
 package;
 
+import lime.graphics.RenderContext;
 import lime.system.System;
 import lime.ui.Window;
 
@@ -9,7 +10,9 @@ class Scene {
 
     public var elapsed(default, null):Float = 0;
 
-    var _state:Class<FeshStates>;
+    var _stateClass:Class<FeshStates>;
+
+    var _state:FeshStates;
 
     var _openFullscreen:Bool;
     var _onFocusDebounce:Bool;
@@ -20,22 +23,12 @@ class Scene {
 
     var initialized:Bool = false;
 
-    public function new(_state:Class<FeshStates>, fullscreen:Bool = false) {
-        this._state = _state;
+    public function new(_stateClass:Class<FeshStates>, fullscreen:Bool = false) {
+        this._stateClass = _stateClass;
 
         #if desktop
         this._openFullscreen = fullscreen;
         #end
-    }
-
-    public function eachFrame():Void {
-        if(Fesh.useFixedTimestep) {
-            //elapsed = Fesh.timeScale * 
-        }else {
-
-        }
-
-        update(elapsed);
     }
 
     public function update(elapsed:Float) {
@@ -70,6 +63,11 @@ class Scene {
         
     }
 
+    public function initWindow(window:Window):Void {
+        this.window = window;
+        __initLimeEvents(window);
+    }
+
     inline public function ticks():Float {
         if(initialized)
             return System.getTimer() - _startTime;
@@ -77,9 +75,65 @@ class Scene {
             return 0;
     }
 
-    @:allow(Main)
     inline function resizeScene(width:Int, height:Int):Void {
         this.width = width;
         this.height = height;
     }
+
+    @:noCompletion private function __initLimeEvents(window:Window):Void {
+        if (this.window != window || window == null) { 
+            return;
+        }
+
+		window.onActivate.add(__onLimeWindowActivate.bind(window));
+		window.onResize.add(__onLimeWindowResize.bind(window));
+		window.onFocusIn.add(__onLimeWindowFocusIn.bind(window));
+		window.onFocusOut.add(__onLimeWindowFocusOut.bind(window));
+		window.onRender.add(__onLimeRenderContext);
+	}
+
+	@:noCompletion private function __onLimeWindowActivate(window:Window):Void {
+        if (this.window != window || window == null) { 
+            return;
+        }
+
+		init(window);
+		resizeScene(window.width, window.height);
+
+		window.onActivate.remove(__onLimeWindowActivate.bind(window));
+	}
+
+	@:noCompletion private function __onLimeWindowResize(window:Window, width:Int, height:Int):Void {
+        if (this.window != window || window == null) { 
+            return;
+        }
+
+		resizeScene(width, height);
+	}
+
+	@:noCompletion private function __onLimeRenderContext(context:RenderContext):Void {
+		if(Fesh.useFixedTimestep) {
+            //elapsed = Fesh.timeScale * 
+        }else {
+
+        }
+
+        update(elapsed);
+	}
+
+	@:noCompletion private function __onLimeWindowFocusIn(window:Window):Void {
+        if (this.window != window || window == null) { 
+            return;
+        }
+
+		onFocusIn();
+	}
+
+	@:noCompletion private function __onLimeWindowFocusOut(window:Window):Void {
+        if (this.window != window || window == null) { 
+            return;
+        }
+
+		onFocusOut();
+	}
 }
