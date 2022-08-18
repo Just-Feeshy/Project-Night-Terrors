@@ -152,7 +152,7 @@ class Scene {
 		onFocusOut();
 	}
 
-    @:access(Fesh) @:noCompletion function set_stepFramerate(value:Int):Int {
+    @:access(Fesh) inline function set_stepFramerate(value:Int):Int {
         if(value > Fesh.framerate) {
             value = Fesh.framerate;
             Log.warn("stepFramerate: should be less than or equals to Fesh.framerate.");
