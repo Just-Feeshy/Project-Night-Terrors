@@ -1,7 +1,6 @@
 package;
 
 import lime.app.Application;
-
 import states.FeshStates;
 
 class Main extends Application {
@@ -11,7 +10,7 @@ class Main extends Application {
 		super();
 
 		game = new Game(FeshStates, #if debug false #else true #end);
-		game.initFramerate();
+		game.initFramerate(60, 60);
 		onCreateWindow.add(game.initWindow.bind());
 	}
 }

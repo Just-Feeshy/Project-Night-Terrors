@@ -7,6 +7,13 @@ import lime.ui.Window;
 import states.FeshStates;
 
 class Scene {
+    var counter:Int = 0;
+    
+    /**
+    * Backend Stuff
+    */
+    @:noCompletion private var _render:Bool = false;
+
     /**
     * How many times the game should to step each second.
     * More steps USUALLY means greater responsiveness.
@@ -153,6 +160,11 @@ class Scene {
 	}
 
 	@:noCompletion function __onLimeRenderContext(context:RenderContext):Void {
+        if(_render)return;
+        _render = true;
+
+        //trace("oh no");
+
         _tickCounter = ticks();
         _lastStepMilliseconds = _tickCounter - _averageDeltaTime;
         _averageDeltaTime = _tickCounter;
@@ -174,6 +186,8 @@ class Scene {
                 step();
             }
         }
+
+        _render = false;
 	}
 
 	@:noCompletion function __onLimeWindowFocusIn(window:Window):Void {
