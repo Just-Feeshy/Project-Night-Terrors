@@ -1,6 +1,5 @@
 package backend;
 
-@:buildXml('<include name="../../../../source/backend/build_cpp.xml" />')
 @:include("BackendHelper.cpp")
 @:keep
 @:native("feeshmora::BackendHelper")
