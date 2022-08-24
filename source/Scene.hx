@@ -4,7 +4,7 @@ import lime.graphics.RenderContext;
 import lime.system.System;
 import lime.ui.Window;
 
-import states.FeshStates;
+import states.IFeshStates;
 
 class Scene {
     var counter:Int = 0;
@@ -50,9 +50,9 @@ class Scene {
     */
     var _lastStepMilliseconds:Float = 0;
 
-    var _stateClass:Class<FeshStates>;
+    var _stateClass:Class<IFeshStates>;
 
-    var _state:FeshStates;
+    var _daState:IFeshStates;
 
     var _openFullscreen:Bool;
     var _onFocusDebounce:Bool;
@@ -62,7 +62,7 @@ class Scene {
 
     var window:Window;
 
-    public function new(_stateClass:Class<FeshStates>, fullscreen:Bool = false) {
+    public function new(_stateClass:Class<IFeshStates>, fullscreen:Bool = false) {
         this._stateClass = _stateClass;
 
         #if desktop
@@ -70,6 +70,16 @@ class Scene {
         #end
 
         _accumulator = Fesh.stepPerMilliseconds;
+    }
+
+    public function switchState(state:Class<IFeshStates>):Void {
+        if (_daState != null) {
+            _daState.keepUpdating = false;
+            _daState.onDestroy();
+        }
+
+        _daState = cast Type.createInstance(state, []);
+        _daState.onCreate();
     }
 
     public function step():Void {
@@ -83,7 +93,11 @@ class Scene {
     }
 
     public function update(elapsed:Float):Void {
+        if(!_daState.keepUpdating) {
+            return;
+        }
 
+        _daState.onUpdate(elapsed);
     }
 
     public function init(window:Window):Void {
@@ -95,6 +109,8 @@ class Scene {
         #if desktop
         window.fullscreen = _openFullscreen;
         #end
+
+        switchState(_stateClass);
     }
 
     public function onFocusIn():Void {
@@ -119,6 +135,10 @@ class Scene {
     public function initWindow(window:Window):Void {
         this.window = window;
         __initLimeEvents(window);
+    }
+
+    function draw():Void {
+
     }
 
     inline public function ticks():Int {
@@ -186,6 +206,8 @@ class Scene {
                 step();
             }
         }
+
+        draw();
 
         _render = false;
 	}

@@ -1,6 +1,6 @@
 package;
 
-import states.FeshStates;
+import states.IFeshStates;
 
 /**
 * Main scenery class.
@@ -8,7 +8,7 @@ import states.FeshStates;
 class Game extends Scene {
     @:allow(Fesh) var resetGame:Bool = false;
 
-    public function new(_state:Class<FeshStates>, fullscreen:Bool = true) {
+    public function new(_state:Class<IFeshStates>, fullscreen:Bool = true) {
         focusPause = false;
         super(_state, fullscreen);
 
