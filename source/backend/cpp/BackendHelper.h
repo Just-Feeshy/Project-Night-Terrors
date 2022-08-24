@@ -3,8 +3,10 @@
 #ifndef GLAD_HANDLER_H
 #define GLAD_HANDLER_H
 
-struct BackendHelper {
-    public:
-        static void init();
-};
+namespace feeshmora {
+    struct BackendHelper {
+        public:
+            static void init();
+    };
+}
 #endif

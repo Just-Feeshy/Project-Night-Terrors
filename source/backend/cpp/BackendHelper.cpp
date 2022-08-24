@@ -1,5 +1,9 @@
+#include <iostream>
+
 #include "BackendHelper.h"
 
-void BackendHelper::init() {
-
+namespace feeshmora {
+    void BackendHelper::init() {
+        std::cout << "hello world" << std::endl;
+    }
 }
