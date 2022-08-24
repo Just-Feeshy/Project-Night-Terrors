@@ -3,7 +3,7 @@ package;
 import states.IFeshStates;
 
 class Sandbox implements IFeshStates {
-    public var keepUpdating(default, null):Bool = true;
+    public var keepRendering(default, null):Bool = true;
 
     public function onCreate():Void {
 

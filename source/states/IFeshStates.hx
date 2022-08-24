@@ -1,7 +1,7 @@
 package states;
 
 interface IFeshStates {
-    @:allow(Scene) var keepUpdating(default, null):Bool;
+    @:allow(Scene) var keepRendering(default, null):Bool;
 
     function onCreate():Void;
     function onDraw():Void;

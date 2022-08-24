@@ -74,12 +74,15 @@ class Scene {
 
     public function switchState(state:Class<IFeshStates>):Void {
         if (_daState != null) {
-            _daState.keepUpdating = false;
+            _daState.keepRendering = false;
             _daState.onDestroy();
         }
 
         _daState = cast Type.createInstance(state, []);
         _daState.onCreate();
+        
+        update(elapsed);
+        draw();
     }
 
     public function step():Void {
@@ -93,7 +96,7 @@ class Scene {
     }
 
     public function update(elapsed:Float):Void {
-        if(!_daState.keepUpdating) {
+        if(!_daState.keepRendering) {
             return;
         }
 
@@ -138,7 +141,11 @@ class Scene {
     }
 
     function draw():Void {
+        if(!_daState.keepRendering) {
+            return;
+        }
 
+        _daState.onDraw();
     }
 
     inline public function ticks():Int {
