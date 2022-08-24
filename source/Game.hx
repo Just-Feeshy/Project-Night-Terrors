@@ -15,7 +15,7 @@ class Game extends Scene {
         Fesh.attachGame(this);
     }
 
-    public function initFramerate(framerate:Int = 60, stepFramerate:Int = 60):Void {
+    public function initFramerate(framerate:Int = 120, stepFramerate:Int = 120):Void {
         Fesh.framerate = framerate;
         this.stepFramerate = stepFramerate;
     }

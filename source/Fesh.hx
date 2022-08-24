@@ -30,7 +30,7 @@ class Fesh {
     /**
     * A framerate-independent interval that dictates when physics calculations are preformed.
     */
-    public static var fixedTimestep:Float = 0.001;
+    public static var fixedTimestep:Float = 2000;
 
     /**
     * The speed at which time progresses; default is `1.0`.
@@ -71,8 +71,8 @@ class Fesh {
     static inline function set_framerate(value:Int):Int {
         Log.info("Fesh.framerate: must be less than any scenes stepFramerate.");
 
-        stepPerMilliseconds = Math.abs((1 / fixedTimestep) * value);
-        stepPerSeconds = Math.abs(value * fixedTimestep);
+        stepPerMilliseconds = Math.abs(1000 / value);
+        stepPerSeconds = Math.abs(value / 1000);
 
         updateMaxAccumulation();
 

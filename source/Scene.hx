@@ -68,6 +68,8 @@ class Scene {
         #if desktop
         this._openFullscreen = fullscreen;
         #end
+
+        _accumulator = Fesh.stepPerMilliseconds;
     }
 
     public function step():Void {
@@ -163,8 +165,6 @@ class Scene {
         if(_render)return;
         _render = true;
 
-        //trace("oh no");
-
         _tickCounter = ticks();
         _lastStepMilliseconds = _tickCounter - _averageDeltaTime;
         _averageDeltaTime = _tickCounter;
@@ -218,7 +218,7 @@ class Scene {
             window.frameRate = stepFramerate;
         }
 
-        Fesh.maxAccumulation = (2 / Fesh.fixedTimestep) / stepFramerate - 1;
+        Fesh.maxAccumulation = Fesh.fixedTimestep / stepFramerate - 1;
         Fesh.updateMaxAccumulation();
 
         return stepFramerate;
