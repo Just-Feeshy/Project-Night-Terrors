@@ -26,8 +26,6 @@ class Game extends Scene {
             resetGame = false;
         }
 
-        trace("oh");
-
         super.step();
     }
 }
