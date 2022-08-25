@@ -1,0 +1,7 @@
+<xml>
+    <set name="DIRECTORY" value="${this_dir}/cpp" />
+
+    <files id='haxe'>
+        <compilervalue name="-I" value="${DIRECTORY}/" />
+    </files>
+</xml>

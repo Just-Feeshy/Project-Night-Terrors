@@ -1,6 +1,7 @@
 package backend;
 
 #if cpp
+@:buildXml('<include name="../../../../source/backend/build_cpp.xml" />')
 @:include("BackendHelper.cpp")
 @:unreflective
 @:native("feeshmora::BackendHelper")
