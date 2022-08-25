@@ -22,7 +22,7 @@
 
 	<!-- _____________________________ Flag Settings ____________________________ -->
 
-	<haxeflag name="--macro" value="tools.macros.FeshMacro.run()" />
+	<haxeflag name="--macro" value="tools.FeshDefinitons.run()" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 	

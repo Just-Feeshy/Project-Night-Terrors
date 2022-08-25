@@ -1,4 +1,4 @@
-package tools.macros;
+package tools;
 
 import haxe.macro.Compiler;
 import haxe.macro.Context;
@@ -7,7 +7,7 @@ private enum BuildEnums {
     USING_GLAD;
 }
 
-class FeshMacro {
+class FeshDefinitons {
     public static function run() {
         #if (haxe_ver < "4.0.0")
         Context.fatalError('Unsupported Haxe version! Supported versions are 4.0.0 or newer! (Found: ${Context.definedValue("haxe_ver")}).', (macro null).pos);
