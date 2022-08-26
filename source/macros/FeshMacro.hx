@@ -18,7 +18,7 @@ class FeshMacro {
     which sets the value to the current time so that builds are always
     updated by the code, and native changes are dragged in automatically (except for header only changes) 
     *
-    * Copied from linc.
+    * Copied from linc. lol
     */
     macro public static function touch():Array<Field> {
 
