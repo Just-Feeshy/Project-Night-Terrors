@@ -5,8 +5,10 @@ import haxe.io.Path;
 import haxe.macro.Expr;
 import haxe.macro.Context;
 
-//POSSIBILITY: Make my own metadata for this.
-
+/**
+* POSSIBILITY: Make my own metadata for this.
+* A helper class with macros 'n stuff.
+*/
 class FeshMacro {
     #if !display
     macro public static function cppXML(directory:String, dirDefs:Array<String>):Array<Field> {
@@ -16,14 +18,14 @@ class FeshMacro {
         var projectPath:String = "";
 
         for(i in 0...dirDefs.length) {
-            projectPath = dirDefs[i];
+            var sourcePath:String = dirDefs[i];
 
-            if(!Path.isAbsolute(projectPath)) {
-                projectPath = Path.join([Sys.getCwd(), projectPath]);
+            if(!Path.isAbsolute(sourcePath)) {
+                sourcePath = Path.join([Sys.getCwd(), sourcePath]);
             }
 
-            projectPath = Path.normalize(projectPath);
-            projectPath += '<set name="${dirDefs[i].split('/')[0].toUpperCase()}_DIR" value="${projectPath}/"/>\n';
+            sourcePath = Path.normalize(sourcePath);
+            projectPath += '<set name="${dirDefs[i].split('/')[0].toUpperCase()}_DIR" value="${sourcePath}/"/>\n';
         }
 
         if(projectPath.substr(projectPath.length - 2, projectPath.length) == "\n") {

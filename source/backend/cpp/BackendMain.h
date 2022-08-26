@@ -3,8 +3,10 @@
 #ifndef GLAD_HANDLER_H
 #define GLAD_HANDLER_H
 
+#include <hxcpp.h>
+
 namespace feeshmora {
-    struct BackendHelper {
+    struct BackendMain {
         public:
             static void init();
     };
