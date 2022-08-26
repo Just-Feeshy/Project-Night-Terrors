@@ -1,14 +1,14 @@
 package backend;
 
-#if cpp
-@:buildXml('<include name="../../../../source/backend/build_cpp.xml" />')
+#if !display
+@:build(macros.FeshMacro.cppXML("source/backend/build_cpp.xml", ["source/backend"]))
 @:include("BackendHelper.cpp")
 @:unreflective
 @:native("feeshmora::BackendHelper")
 #end
 @:keep
 extern class NativeExtensions {
-    #if cpp 
+    #if !display
     @:native("feeshmora::BackendHelper::init")
     #end
 	public static function init():Void;
