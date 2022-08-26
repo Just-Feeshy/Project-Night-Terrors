@@ -2,8 +2,10 @@ package backend;
 
 #if !display
 @:include("BackendMain.cpp")
-@:unreflective
 @:native("feeshmora::BackendMain")
+
+@:structAccess
+@:unreflective
 #end
 @:keep
 extern class NativeExtensions {
