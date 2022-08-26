@@ -34,7 +34,9 @@ class FeshMacro {
 
         var getInclude:String = '<include name="../../../../${directory}" />';
 
-        curClass.get().meta.add(":buildXml", [{expr:EConst(CString('$projectPath\n$getInclude')), pos: curPos}], curPos);
+        var buildDir:String = '<set name ="BUILD_TARGET" value="glad"/>';
+
+        curClass.get().meta.add(":buildXml", [{expr:EConst(CString('$buildDir\n$projectPath\n$getInclude')), pos: curPos}], curPos);
         return Context.getBuildFields();
     }
     #end
