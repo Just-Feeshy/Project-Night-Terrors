@@ -4,6 +4,7 @@ import lime.app.Application;
 
 import backend.NativeExtensions;
 
+@:build(macros.FeshMacro.touch())
 @:build(macros.FeshMacro.cppXML("source/backend/cpp/build_cpp.xml", ["source/backend", "libs/glad/include"]))
 class Main extends Application {
 	var game:Game; //Make da game itself.
