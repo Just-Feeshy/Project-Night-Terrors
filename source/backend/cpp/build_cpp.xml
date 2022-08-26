@@ -1,8 +1,9 @@
 <xml>
     <set name="DIRECTORY" value="${SOURCE_DIR}/cpp/${BUILD_TARGET}/" />
+    <set name="TARGET_DIR" value="${LIBS_DIR}/glad/include" />
 
     <files id='haxe'>
-        <compilervalue name="-I" value="${LIBS_DIR}/" />
+        <compilervalue name="-I" value="${TARGET_DIR}/" />
         <compilervalue name="-I" value="${DIRECTORY}/" />
     </files>
 
