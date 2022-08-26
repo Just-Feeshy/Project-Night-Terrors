@@ -2,8 +2,13 @@
     <set name="DIRECTORY" value="${SOURCE_DIR}/cpp/${BUILD_TARGET}/" />
     <set name="TARGET_DIR" value="${LIBS_DIR}/${BUILD_TARGET}/include" />
 
-
     <files id='haxe'>
+        <section if="mac">
+            <set name = "SDL_DIR" value = "${LIBS_DIR}/sdl/macos/SDL2.framework" />
+        </section>
+
+        <compilervalue name="-I" value="${SDL_DIR}/Headers/" />
+
         <compilervalue name="-I" value="${TARGET_DIR}/" />
         <compilervalue name="-I" value="${DIRECTORY}/" />
     </files>
