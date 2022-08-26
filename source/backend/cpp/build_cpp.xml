@@ -5,4 +5,9 @@
         <compilervalue name="-I" value="${LIBS_DIR}/" />
         <compilervalue name="-I" value="${DIRECTORY}/" />
     </files>
+
+    <target id="haxe">
+        <vflag name="-framework" value="OpenGL" if="macos || ios"/>
+	    <vflag name="-framework" value="Cocoa" if="macos || ios"/>
+    </target>
 </xml>
