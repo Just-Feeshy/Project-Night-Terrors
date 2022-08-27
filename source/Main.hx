@@ -6,7 +6,12 @@ import backend.NativeExtensions;
 
 #if !display
 @:build(macros.FeshMacro.touch())
-@:build(macros.FeshMacro.cppXML("source/backend/cpp/build_cpp.xml", ["source/backend", "libs"]))
+
+@:build(macros.FeshMacro.cppXML("source/backend/cpp/build_cpp.xml", [
+	"source/backend",
+	"libs",
+	"tools/libs"
+]))
 #end
 class Main extends Application {
 	var game:Game; //Make da game itself.
