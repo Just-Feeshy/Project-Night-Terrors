@@ -55,6 +55,8 @@ class Fesh {
 	 * Re-launch game.
 	 */
 	public static inline function resetGame():Void {
+        trace("Reset");
+
         if(game != null) game.resetGame = true;
     }
 
