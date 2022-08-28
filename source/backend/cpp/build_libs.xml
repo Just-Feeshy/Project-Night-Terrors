@@ -16,6 +16,6 @@
 
         <compilerflag value="-DENABLED_SDL" />
 
-        <include name="${TOOLS_DIR}/lib/sdl/files.xml" />
+        <include name="${TOOLS_DIR}/sdl/files.xml" />
     </section>
 </xml>
