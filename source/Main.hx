@@ -1,6 +1,7 @@
 package;
 
 import lime.app.Application;
+import backend.NativePlugin;
 
 class Main extends Application {
 	var game:Game; //Make da game itself.
@@ -11,5 +12,7 @@ class Main extends Application {
 		game = new Game(Sandbox, #if debug false #else true #end);
 		game.initFramerate(60, 60);
 		onCreateWindow.add(game.initWindow.bind());
+
+		NativePlugin.init();
 	}
 }
