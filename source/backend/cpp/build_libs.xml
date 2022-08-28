@@ -1,0 +1,21 @@
+<xml>
+    <section if="ENABLED_SDL">
+        <section if="emscripten">
+			<compilerflag value="-s" />
+        </section>
+
+        <section unless="emscripten">
+            <compilerflag value="-I${TOOLS_DIR}/sdl/include/" />
+            <compilerflag value="-I${TOOLS_DIR}/sdl/include/configs/default/" unless="windows || mac || linux || rpi" />
+            <compilerflag value="-I${TOOLS_DIR}/sdl/include/configs/linux/" if="linux" unless="rpi" />
+            <compilerflag value="-I${TOOLS_DIR}/sdl/include/configs/windows/" if="windows" unless="winrt" />
+            <compilerflag value="-I${TOOLS_DIR}/sdl/include/configs/mac/" if="mac" />
+            <compilerflag value="-I${TOOLS_DIR}/sdl/include/configs/rpi/" if="rpi" />
+            <compilerflag value="-I${TOOLS_DIR}/sdl/include/configs/winrt/" if="winrt" />
+        </section>
+
+        <compilerflag value="-DENABLED_SDL" />
+
+        <include name="${TOOLS_DIR}/lib/sdl/files.xml" />
+    </section>
+</xml>
