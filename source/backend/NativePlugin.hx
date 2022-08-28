@@ -7,6 +7,6 @@ package backend;
 @:keep
 extern class NativePlugin {
     #if (!macro && (cpp && !cppia))
-    @:native("spoopy::initialize_application_rendering") public static function init():Void;
+    @:native("spoopy::initialize_application_rendering") public static function initialize_application_rendering():Void;
     #end
 }

@@ -1,3 +1,5 @@
+#include <iostream>
+
 /**
  * @brief static method holder.
  * 
@@ -5,6 +7,6 @@
  */
 namespace spoopy {
     void initialize_application_rendering() {
-
+        std::cout << "hehe" << std::endl;
     }
 }
