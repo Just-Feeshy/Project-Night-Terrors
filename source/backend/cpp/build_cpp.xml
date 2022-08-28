@@ -1,6 +1,10 @@
 <xml>
-    <set name="DIRECTORY" value="${SOURCE_DIR}/cpp/${BUILD_TARGET}/" />
-    <set name="TARGET_DIR" value="${LIBS_DIR}/${BUILD_TARGET}/include" />
+    <set name="DIRECTORY" value="${SOURCE_DIR}/cpp/test/" />
+
+    <section if="ENABLED_GLAD">
+        <set name="TARGET_DIR" value="${LIBS_DIR}/glad/include" />
+        <compilerflag value="-DENABLED_GLAD" />
+    </section>
 
     <files id='haxe'>
         <compilervalue name="-I" value="${TARGET_DIR}/" />
