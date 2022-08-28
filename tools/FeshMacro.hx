@@ -17,20 +17,25 @@ using haxe.macro.ExprTools;
 #end
 
 private enum BuildEnums {
-    USING_GLAD;
+    ENABLED_GLAD;
+    ENABLED_SDL;
 }
 
 /*
 * A helper class with macros 'n stuff.
 */
 class FeshMacro {
+    static var enabledList:Array<String> = [];
+
     public static function setupDefs() {
         #if (haxe_ver < "4.0.0")
         Context.fatalError('Unsupported Haxe version! Supported versions are 4.0.0 or newer! (Found: ${Context.definedValue("haxe_ver")}).', (macro null).pos);
         #end
         
-        if(Context.defined("cpp")) { //Change this in the future.
-            defineEnum(USING_GLAD);
+        if(Context.defined("cpp") && !Context.defined("cppia")) {
+            enableEnum(ENABLED_GLAD); //Change this in the future.
+
+            enableEnum(ENABLED_SDL);
         }
     }
 
@@ -82,8 +87,16 @@ class FeshMacro {
             projectPath = projectPath.substr(0, projectPath.length - 2);
         }
 
-        var getInclude:String = '<include name="../../../../${directory}" />';
-        var getBuildTarget:String = '<set name="ENABLED_GLAD" value="1"/>';
+        var getInclude:String = '<include name="${Path.normalize(Path.join([Sys.getCwd(), directory]))}" />';
+        var getBuildTarget:String = '';
+
+        for(i in 0...enabledList.length) {
+            getBuildTarget += '<set name="${enabledList[i]}" value="1"/>\n';
+        }
+
+        if(getBuildTarget.substr(getBuildTarget.length - 2, getBuildTarget.length) == "\n") {
+            getBuildTarget = getBuildTarget.substr(0, getBuildTarget.length - 2);
+        }
 
         curClass.get().meta.add(":buildXml", [{expr:EConst(CString('$getBuildTarget\n$projectPath\n$getInclude')), pos: curPos}], curPos);
         return Context.getBuildFields();
@@ -109,6 +122,7 @@ class FeshMacro {
                     fields = cppXML("source/backend/cpp/build_cpp.xml", m.params[0].getValue());
                 }
 
+                enabledList = [];
                 GAME_INIT = true;
             }
         }
@@ -117,8 +131,11 @@ class FeshMacro {
     }
     #end
 
-    static inline function defineEnum(define:BuildEnums) {
-        Compiler.define(Std.string(define));
+    static inline function enableEnum(define:BuildEnums) {
+        var def_String:String = Std.string(define);
+
+        Compiler.define(def_String);
+        enabledList.push(def_String);
     }
 }
 #end
