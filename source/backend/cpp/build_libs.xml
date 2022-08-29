@@ -18,4 +18,9 @@
 
         <include name="${TOOLS_DIR}/sdl/files.xml" />
     </section>
+
+    <section if='ENABLED_GLAD'>
+        <set name='TARGET_DIR' value='${LIBS_DIR}/glad/include' />
+        <compilerflag value='-DENABLED_GLAD' />
+    </section>
 </xml>

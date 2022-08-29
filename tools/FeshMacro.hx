@@ -94,7 +94,7 @@ class FeshMacro {
 
         for(m in curClass.get().meta.get()) {
             switch(m.name) {
-                case ":setupPlugin":
+                case ":setupGame":
                     if(GAME_INIT) {
                         continue;
                     }
@@ -104,7 +104,7 @@ class FeshMacro {
                             newFields.push({
                                 name: '__touch', pos: Context.currentPos(),
                                 doc: null, meta: [], access: [APrivate, AStatic, AInline],
-                                kind: FVar(macro : String, macro $v{ Std.string(Date.now().getTime()) }),
+                                kind: FVar(macro : String, macro $v{ Std.string(Date.now().getTime())}),
                             });
 
                             fields = cppXML("source/backend/cpp/build_cpp.xml", m.params[0].getValue());

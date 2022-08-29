@@ -1,19 +1,8 @@
 <xml>
-    <include name='build_libs.xml' />
-
-    <section if='ENABLED_GLAD'>
-        <set name='TARGET_DIR' value='${LIBS_DIR}/glad/include' />
-        <compilerflag value='-DENABLED_GLAD' />
-    </section>
-
-    <files id='haxe'>
-        <compilerflag value='-DTEST' />
+    <files id="haxe">
+        <include name='build_libs.xml' />
 
         <compilerflag value='-I${SOURCE_DIR}/cpp/' />
         <file name='${SOURCE_DIR}/cpp/AppInterface.cpp' />
-    </files>
-
-    <files id='__main__'>
-        <compilerflag value='-I${SOURCE_DIR}/cpp/'/>
     </files>
 </xml>
