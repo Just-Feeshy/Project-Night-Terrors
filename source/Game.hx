@@ -5,11 +5,6 @@ import states.IFeshStates;
 /**
 * Main scenery class.
 */
-@:setupGame([
-    "source/backend",
-	"libs",
-	"tools/libs"
-])
 class Game extends Scene {
     @:allow(Fesh) var resetGame:Bool = false;
 

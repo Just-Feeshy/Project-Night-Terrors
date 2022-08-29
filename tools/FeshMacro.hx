@@ -29,7 +29,7 @@ class FeshMacro {
 
     public static function setupDefs() {
         #if (haxe_ver < "4.0.0")
-        Context.fatalError('Unsupported Haxe version! Supported versions are 4.0.0 or newer! (Found: ${Context.definedValue("haxe_ver")}).', (macro null).pos);
+        Context.fatalError('Unsupported Haxe version! Supported versions are 4.0.5 or newer! (Found: ${Context.definedValue("haxe_ver")}).', (macro null).pos);
         #end
         
         if(Context.defined("cpp") && !Context.defined("cppia")) {
@@ -42,25 +42,6 @@ class FeshMacro {
     #if !display
     static var CPP_DIR:String = "source/backend/cpp/build_cpp.xml";
     static var GAME_INIT:Bool = false;
-
-    /** 
-    Adds a private internal inline static variable called __touch,
-    which sets the value to the current time so that builds are always
-    updated by the code, and native changes are dragged in automatically (except for header only changes) 
-    *
-    * Copied from linc. lol
-    */
-    macro public static function touch():Array<Field> {
-        var _fields:Array<Field> = Context.getBuildFields();
-
-        _fields.push({
-            name: '__touch', pos: Context.currentPos(),
-            doc: null, meta: [], access: [APrivate, AStatic, AInline],
-            kind: FVar(macro : String, macro $v{ Std.string(Date.now().getTime()) }),
-        });
-
-        return _fields;
-    }
 
     public static function cppXML(directory:String, dirDefs:Array<String>):Array<Field> {
         var curPos:Position = Context.currentPos();
@@ -105,28 +86,37 @@ class FeshMacro {
     macro public static function setupMeta():Array<Field> {
         var curClass:Null<Ref<ClassType>> = Context.getLocalClass();
         var fields:Array<Field> = Context.getBuildFields();
-
-        var META_STR:String = ":setupGame";
+        var newFields:Array<Field> = []; //If I wanna do field stuff.
 
         if(curClass == null) {
             return null;
         }
 
-        for(m in curClass.get().meta.extract(META_STR)) {
-            if(m.name == ":setupGame") {
-                if(GAME_INIT) {
-                    continue;
-                }
+        for(m in curClass.get().meta.get()) {
+            switch(m.name) {
+                case ":setupPlugin":
+                    if(GAME_INIT) {
+                        continue;
+                    }
 
-                if (Reflect.hasField(m, "params")) {
-                    fields = cppXML("source/backend/cpp/build_cpp.xml", m.params[0].getValue());
-                }
+                    if (Context.defined("cpp")) {
+                        if (Reflect.hasField(m, "params")) {
+                            newFields.push({
+                                name: '__touch', pos: Context.currentPos(),
+                                doc: null, meta: [], access: [APrivate, AStatic, AInline],
+                                kind: FVar(macro : String, macro $v{ Std.string(Date.now().getTime()) }),
+                            });
 
-                enabledList = [];
-                GAME_INIT = true;
+                            fields = cppXML("source/backend/cpp/build_cpp.xml", m.params[0].getValue());
+                        }
+                    }
+
+                    enabledList = [];
+                    GAME_INIT = true;
             }
         }
         
+        fields = fields.concat(newFields);
         return fields;
     }
     #end

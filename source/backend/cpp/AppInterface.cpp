@@ -1,3 +1,4 @@
+#include <hxcpp.h>
 #include <iostream>
 
 /**
@@ -6,7 +7,11 @@
  * @author Just-Feeshy
  */
 namespace spoopy {
-    void initialize_application_rendering() {
+    static void initialize_application_rendering() {
         std::cout << "hehe" << std::endl;
+
+        #ifdef ENABLED_GLAD
+        std::cout << "hehe double" << std::endl;
+        #endif
     }
 }

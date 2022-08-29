@@ -1,20 +1,19 @@
 <xml>
-    <include name="build_libs.xml" />
+    <include name='build_libs.xml' />
 
-    <set name="DIRECTORY" value="${SOURCE_DIR}/cpp/" />
-
-    <section if="ENABLED_GLAD">
-        <set name="TARGET_DIR" value="${LIBS_DIR}/glad/include" />
-        <compilerflag value="-DENABLED_GLAD" />
+    <section if='ENABLED_GLAD'>
+        <set name='TARGET_DIR' value='${LIBS_DIR}/glad/include' />
+        <compilerflag value='-DENABLED_GLAD' />
     </section>
 
     <files id='haxe'>
-        <compilervalue name="-I" value="${TARGET_DIR}/" />
-        <compilervalue name="-I" value="${DIRECTORY}/" />
+        <compilerflag value='-DTEST' />
+
+        <compilerflag value='-I${SOURCE_DIR}/cpp/' />
+        <file name='${SOURCE_DIR}/cpp/AppInterface.cpp' />
     </files>
 
-    <target id="haxe">
-        <vflag name="-framework" value="OpenGL" if="ios"/>
-	    <vflag name="-framework" value="Cocoa" if="macos || ios"/>
-    </target>
+    <files id='__main__'>
+        <compilerflag value='-I${SOURCE_DIR}/cpp/'/>
+    </files>
 </xml>
