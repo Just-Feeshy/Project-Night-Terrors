@@ -6,7 +6,7 @@
 #endif
 
 #ifdef ENABLED_GLAD
-//#include <>
+#include <glad.c>
 #endif
 
 /**
@@ -15,11 +15,11 @@
  * @author Just-Feeshy
  */
 namespace spoopy {
-    static void initialize_application_rendering() {
-        std::cout << "hehe" << std::endl;
+    void initialize_application_rendering() {
+        std::cout << "hehe 2.0" << std::endl;
 
         #ifdef ENABLED_SDL && ENABLED_GLAD
-
+        
         #endif
     }
 }

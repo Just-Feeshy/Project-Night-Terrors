@@ -20,7 +20,11 @@
     </section>
 
     <section if='ENABLED_GLAD'>
-        <set name='TARGET_DIR' value='${LIBS_DIR}/glad/include' />
+        <section unless="emscripten">
+            <compilervalue name="-I" value="${LIBS_DIR}/glad/include/" />
+            <compilervalue name="-I" value="${LIBS_DIR}/glad/src/" />
+        </section>
+
         <compilerflag value='-DENABLED_GLAD' />
     </section>
 </xml>

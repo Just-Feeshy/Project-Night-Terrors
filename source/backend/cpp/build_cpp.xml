@@ -2,7 +2,6 @@
     <files id="haxe">
         <include name='build_libs.xml' />
 
-        <compilerflag value='-I${SOURCE_DIR}/cpp/' />
-        <file name='${SOURCE_DIR}/cpp/AppInterface.cpp' />
+        <compilervalue name="-I" value='${SOURCE_DIR}/cpp/' />
     </files>
 </xml>
