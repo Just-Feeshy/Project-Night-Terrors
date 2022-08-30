@@ -11,6 +11,7 @@ import states.IFeshStates;
 	"libs",
 	"tools/libs"
 ])
+
 class Game extends Scene {
     @:allow(Fesh) var resetGame:Bool = false;
 
