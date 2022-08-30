@@ -19,6 +19,7 @@ using haxe.macro.ExprTools;
 private enum BuildEnums {
     ENABLED_GLAD;
     ENABLED_SDL;
+    ENABLED_APP;
 }
 
 /*
@@ -36,6 +37,7 @@ class FeshMacro {
             enableEnum(ENABLED_GLAD); //Change this in the future.
 
             enableEnum(ENABLED_SDL);
+            enableEnum(ENABLED_APP);
         }
     }
 
