@@ -95,6 +95,8 @@ class FeshMacro {
         }
 
         for(m in curClass.get().meta.get()) {
+            trace(m.name);
+
             switch(m.name) {
                 case ":setupGame":
                     if(GAME_INIT) {

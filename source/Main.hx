@@ -1,7 +1,7 @@
 package;
 
 import lime.app.Application;
-import backend.NativePlugin;
+import backend.native.NativePlugin;
 
 class Main extends Application {
 	var game:Game; //Make da game itself.
@@ -13,6 +13,10 @@ class Main extends Application {
 		game.initFramerate(60, 60);
 		onCreateWindow.add(game.initWindow.bind());
 		
-		NativePlugin.initialize_application_rendering();
+		//NativePlugin.initialize_application_rendering();
+	}
+
+	public function init():Void {
+		
 	}
 }
