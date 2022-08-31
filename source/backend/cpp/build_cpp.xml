@@ -1,19 +1,7 @@
 <xml>
-    <files id="spoopy-engine">
+    <files id="haxe">
         <include name='build_libs.xml' />
 
         <compilervalue name="-I" value='${SOURCE_DIR}/cpp/' />
     </files>
-
-    <set name="DEBUGEXTRA" value="-debug" if="fulldebug" />
-	<set name="LIBSUFFIX" value="${HX_TARGET_SUFFIX}" if="HX_TARGET_SUFFIX" />
-	<set name="LIBSUFFIX" value="${LIBEXTRA}" unless="LIBSUFFIX" />
-
-	<target id="spoopy-engine" output="${LIBPREFIX}spoopy-engine${DEBUGEXTRA}${LIBSUFFIX}" tool="linker" toolid="${STD_MODULE_LINK}">
-        <files id="spoopy-engine" />
-    </target>
-
-    <target id="default">
-		<target id="spoopy-engine" />
-    </target>
 </xml>

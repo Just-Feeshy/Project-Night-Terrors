@@ -11,6 +11,8 @@ import states.IFeshStates;
 	"libs",
 	"tools/libs"
 ])
+
+@:build(tools.FeshMacro.setupMeta())
 class Game extends Scene {
     @:allow(Fesh) var resetGame:Bool = false;
 
