@@ -111,7 +111,7 @@ class FeshMacro {
                                 kind: FVar(macro : String, macro $v{ Std.string(Date.now().getTime())}),
                             });
 
-                            fields = cppXML("source/backend/cpp/build_cpp.xml", m.params[0].getValue());
+                            fields = cppXML("project/Build.xml", m.params[0].getValue());
                         }
                     }
 

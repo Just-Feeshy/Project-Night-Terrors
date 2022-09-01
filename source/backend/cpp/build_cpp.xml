@@ -1,6 +1,6 @@
 <xml>
     <files id="haxe">
-        <set name="NATIVE_TOOLKIT_PATH" value="${TOOLS_DIR}">
+        <set name="NATIVE_TOOLKIT_PATH" value="${TOOLS_DIR}" />
         <include name="${PROJECT_DIR}/Build.xml" />
     </files>
 </xml>

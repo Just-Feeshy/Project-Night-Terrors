@@ -72,7 +72,7 @@
 			<compilerflag value="-DCAIRO_WIN32_STATIC_BUILD" if="windows" />
 			<compilerflag value="-DCAIRO_HAS_FT_FONT" />
 
-			<file name="src/graphics/cairo/CairoBindings.cpp" />
+			<file name="${PROJECT_DIR}src/graphics/cairo/CairoBindings.cpp" />
 
 		</section>
 
@@ -116,7 +116,7 @@
 				<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/harfbuzz/src" />
 				<compilerflag value="-DLIME_HARFBUZZ" />
 
-				<file name="src/text/harfbuzz/HarfbuzzBindings.cpp" />
+				<file name="${PROJECT_DIR}src/text/harfbuzz/HarfbuzzBindings.cpp" />
 
 			</section>
 
@@ -141,7 +141,7 @@
 			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/jpeg/" />
 			<compilerflag value="-DLIME_JPEG" />
 
-			<file name="src/graphics/format/JPEG.cpp" />
+			<file name="${PROJECT_DIR}/src/graphics/format/JPEG.cpp" />
 
 		</section>
 
@@ -150,7 +150,7 @@
 			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/lzma/src" />
 			<compilerflag value="-DLIME_LZMA" />
 
-			<file name="src/utils/compress/LZMA.cpp" />
+			<file name="${PROJECT_DIR}/src/utils/compress/LZMA.cpp" />
 
 		</section>
 
@@ -159,7 +159,7 @@
 			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/neko/vm/" />
 			<compilerflag value="-DLIME_NEKO" />
 
-			<file name="src/vm/NekoVM.cpp" />
+			<file name="${PROJECT_DIR}/src/vm/NekoVM.cpp" />
 
 		</section>
 
@@ -169,7 +169,7 @@
 			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/vorbis/include/" />
 			<compilerflag value="-DLIME_OGG" />
 
-			<file name="src/media/containers/OGG.cpp" />
+			<file name="${PROJECT_DIR}/src/media/containers/OGG.cpp" />
 
 		</section>
 
@@ -183,7 +183,7 @@
 			<compilerflag value="-DAL_LIBTYPE_STATIC=1" if="LIME_OPENALSOFT || LIME_MOJOAL" />
 			<compilerflag value="-DAL_ALEXT_PROTOTYPES" if="LIME_OPENALSOFT" />
 
-			<file name="src/media/openal/OpenALBindings.cpp" />
+			<file name="${PROJECT_DIR}/src/media/openal/OpenALBindings.cpp" />
 
 		</section>
 
@@ -192,7 +192,7 @@
 			<compilerflag value="-DLIME_OPENGL" />
 			<compilerflag value="-I${DEVELOPER_DIR}/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS${TVOS_VER}.sdk/" if="tvos" />
 
-			<file name="src/graphics/opengl/OpenGLBindings.cpp" />
+			<file name="${PROJECT_DIR}/src/graphics/opengl/OpenGLBindings.cpp" />
 
 		</section>
 
@@ -202,7 +202,7 @@
 			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/zlib/" />
 			<compilerflag value="-DLIME_PNG" />
 
-			<file name="src/graphics/format/PNG.cpp" />
+			<file name="${PROJECT_DIR}/src/graphics/format/PNG.cpp" />
 
 		</section>
 
@@ -246,13 +246,13 @@
 			<compilerflag value="-D__APPLETVOS__" if="tvos" />
 			<compilerflag value="-DAPPLETV" if="tvos" />
 
-			<file name="src/backend/sdl/SDLApplication.cpp" />
-			<file name="src/backend/sdl/SDLGamepad.cpp" />
-			<file name="src/backend/sdl/SDLJoystick.cpp" />
-			<file name="src/backend/sdl/SDLKeyCode.cpp" />
-			<file name="src/backend/sdl/SDLMutex.cpp" />
-			<file name="src/backend/sdl/SDLSystem.cpp" />
-			<file name="src/backend/sdl/SDLWindow.cpp" />
+			<file name="${PROJECT_DIR}/src/backend/sdl/SDLApplication.cpp" />
+			<file name="${PROJECT_DIR}/src/backend/sdl/SDLGamepad.cpp" />
+			<file name="${PROJECT_DIR}/src/backend/sdl/SDLJoystick.cpp" />
+			<file name="${PROJECT_DIR}/src/backend/sdl/SDLKeyCode.cpp" />
+			<file name="${PROJECT_DIR}/src/backend/sdl/SDLMutex.cpp" />
+			<file name="${PROJECT_DIR}/src/backend/sdl/SDLSystem.cpp" />
+			<file name="${PROJECT_DIR}/src/backend/sdl/SDLWindow.cpp" />
 
 		</section>
 
@@ -271,8 +271,8 @@
 			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/vorbis/include/" />
 			<compilerflag value="-DLIME_VORBIS" />
 
-			<file name="src/media/codecs/vorbis/VorbisBindings.cpp" />
-			<file name="src/media/codecs/vorbis/VorbisFile.cpp" />
+			<file name="${PROJECT_DIR}/src/media/codecs/vorbis/VorbisBindings.cpp" />
+			<file name="${PROJECT_DIR}/src/media/codecs/vorbis/VorbisFile.cpp" />
 
 		</section>
 
@@ -285,41 +285,41 @@
 
 		</section>
 
-		<file name="src/app/ApplicationEvent.cpp" />
-		<file name="src/graphics/utils/ImageDataUtil.cpp" />
-		<file name="src/graphics/Image.cpp" />
-		<file name="src/graphics/ImageBuffer.cpp" />
-		<file name="src/graphics/RenderEvent.cpp" />
-		<file name="src/math/ColorMatrix.cpp" />
-		<file name="src/math/Matrix3.cpp" />
-		<file name="src/math/Rectangle.cpp" />
-		<file name="src/math/Vector2.cpp" />
-		<file name="src/media/containers/WAV.cpp" />
-		<file name="src/media/AudioBuffer.cpp" />
-		<file name="src/system/CFFI.cpp" />
-		<file name="src/system/CFFIPointer.cpp" />
-		<file name="src/system/ClipboardEvent.cpp" />
-		<file name="src/system/DisplayMode.cpp" />
-		<file name="src/system/JNI.cpp" if="android" />
-		<file name="src/system/Locale.cpp" unless="mac || ios" />
-		<file name="src/system/Locale.mm" if="mac || ios" />
-		<file name="src/system/SensorEvent.cpp" />
-		<file name="src/system/System.cpp" unless="ios" />
-		<file name="src/system/System.mm" if="ios" />
-		<file name="src/system/ValuePointer.cpp" />
-		<file name="src/ui/DropEvent.cpp" />
-		<file name="src/ui/GamepadEvent.cpp" />
-		<file name="src/ui/Haptic.mm" if="ios" />
-		<file name="src/ui/JoystickEvent.cpp" />
-		<file name="src/ui/KeyEvent.cpp" />
-		<file name="src/ui/MouseEvent.cpp" />
-		<file name="src/ui/TextEvent.cpp" />
-		<file name="src/ui/TouchEvent.cpp" />
-		<file name="src/ui/WindowEvent.cpp" />
-		<file name="src/utils/ArrayBufferView.cpp" />
-		<file name="src/utils/Bytes.cpp" />
+		<file name="${PROJECT_DIR}/src/app/ApplicationEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/graphics/utils/ImageDataUtil.cpp" />
+		<file name="${PROJECT_DIR}/src/graphics/Image.cpp" />
+		<file name="${PROJECT_DIR}/src/graphics/ImageBuffer.cpp" />
+		<file name="${PROJECT_DIR}/src/graphics/RenderEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/math/ColorMatrix.cpp" />
+		<file name="${PROJECT_DIR}/src/math/Matrix3.cpp" />
+		<file name="${PROJECT_DIR}/src/math/Rectangle.cpp" />
+		<file name="${PROJECT_DIR}/src/math/Vector2.cpp" />
+		<file name="${PROJECT_DIR}/src/media/containers/WAV.cpp" />
+		<file name="${PROJECT_DIR}/src/media/AudioBuffer.cpp" />
+		<file name="${PROJECT_DIR}/src/system/CFFI.cpp" />
+		<file name="${PROJECT_DIR}/src/system/CFFIPointer.cpp" />
+		<file name="${PROJECT_DIR}/src/system/ClipboardEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/system/DisplayMode.cpp" />
+		<file name="${PROJECT_DIR}/src/system/JNI.cpp" if="android" />
+		<file name="${PROJECT_DIR}/src/system/Locale.cpp" unless="mac || ios" />
+		<file name="${PROJECT_DIR}/src/system/Locale.mm" if="mac || ios" />
+		<file name="${PROJECT_DIR}/src/system/SensorEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/system/System.cpp" unless="ios" />
+		<file name="${PROJECT_DIR}/src/system/System.mm" if="ios" />
+		<file name="${PROJECT_DIR}/src/system/ValuePointer.cpp" />
+		<file name="${PROJECT_DIR}/src/ui/DropEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/ui/GamepadEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/ui/Haptic.mm" if="ios" />
+		<file name="${PROJECT_DIR}/src/ui/JoystickEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/ui/KeyEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/ui/MouseEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/ui/TextEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/ui/TouchEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/ui/WindowEvent.cpp" />
+		<file name="${PROJECT_DIR}/src/utils/ArrayBufferView.cpp" />
+		<file name="${PROJECT_DIR}/src/utils/Bytes.cpp" />
 
-		<file name="src/hx/CFFIExt.cpp" />
+		<file name="${PROJECT_DIR}/src/hx/CFFIExt.cpp" />
 
 	</files>
 
@@ -330,27 +330,27 @@
 
 	</files>
 
-	<include name="lib/cairo/files.xml" />
-	<include name="lib/curl/files.xml" />
-	<include name="lib/efsw/files.xml" />
-	<include name="lib/faudio/files.xml" if="LIME_FAUDIO" />
-	<include name="lib/freetype/files.xml" />
-	<include name="lib/harfbuzz/files.xml" />
-	<include name="lib/jpeg/files.xml" />
-	<include name="lib/lzma/files.xml" />
-	<include name="lib/mbedtls/files.xml" />
-	<include name="lib/mojoal/files.xml" />
-	<include name="lib/neko/files.xml" />
-	<include name="lib/ogg/files.xml" />
-	<include name="lib/openal/files.xml" />
-	<include name="lib/pixman/files.xml" />
-	<include name="lib/png/files.xml" />
-	<include name="lib/sdl/files.xml" />
-	<include name="lib/tinyfiledialogs/files.xml" />
-	<include name="lib/vorbis/files.xml" />
-	<include name="lib/vpx/files.xml" />
-	<include name="lib/webm/files.xml" />
-	<include name="lib/zlib/files.xml" />
+	<include name="${PROJECT_DIR}/lib/cairo/files.xml" />
+	<include name="${PROJECT_DIR}/lib/curl/files.xml" />
+	<include name="${PROJECT_DIR}/lib/efsw/files.xml" />
+	<include name="${PROJECT_DIR}/lib/faudio/files.xml" if="LIME_FAUDIO" />
+	<include name="${PROJECT_DIR}/lib/freetype/files.xml" />
+	<include name="${PROJECT_DIR}/lib/harfbuzz/files.xml" />
+	<include name="${PROJECT_DIR}/lib/jpeg/files.xml" />
+	<include name="${PROJECT_DIR}/lib/lzma/files.xml" />
+	<include name="${PROJECT_DIR}/lib/mbedtls/files.xml" />
+	<include name="${PROJECT_DIR}/lib/mojoal/files.xml" />
+	<include name="${PROJECT_DIR}/lib/neko/files.xml" />
+	<include name="${PROJECT_DIR}/lib/ogg/files.xml" />
+	<include name="${PROJECT_DIR}/lib/openal/files.xml" />
+	<include name="${PROJECT_DIR}/lib/pixman/files.xml" />
+	<include name="${PROJECT_DIR}/lib/png/files.xml" />
+	<include name="${PROJECT_DIR}/lib/sdl/files.xml" />
+	<include name="${PROJECT_DIR}/lib/tinyfiledialogs/files.xml" />
+	<include name="${PROJECT_DIR}/lib/vorbis/files.xml" />
+	<include name="${PROJECT_DIR}/lib/vpx/files.xml" />
+	<include name="${PROJECT_DIR}/lib/webm/files.xml" />
+	<include name="${PROJECT_DIR}/lib/zlib/files.xml" />
 
 	<set name="DEBUGEXTRA" value="-debug" if="fulldebug" />
 	<set name="LIBSUFFIX" value="${HX_TARGET_SUFFIX}" if="HX_TARGET_SUFFIX" />
@@ -363,7 +363,7 @@
 		<files id="lime" />
 		<files id="android-cpufeatures" if="android" />
 
-		<files id="native-toolkit-cairo" if="LIME_CAIRO" />
+		<!--<files id="native-toolkit-cairo" if="LIME_CAIRO" />
 		<files id="native-toolkit-curl" if="LIME_CURL" />
 		<files id="native-toolkit-efsw" if="LIME_EFSW" />
 		<files id="native-toolkit-faudio" if="LIME_FAUDIO" />
@@ -383,7 +383,7 @@
 		<files id="native-toolkit-vorbis" if="LIME_VORBIS" />
 		<files id="native-toolkit-vpx" if="LIME_VPX" />
 		<files id="native-toolkit-webm" if="LIME_WEBM" />
-		<files id="native-toolkit-zlib" if="LIME_ZLIB" />
+		<files id="native-toolkit-zlib" if="LIME_ZLIB" />-->
 
 		<section unless="static_link">
 
