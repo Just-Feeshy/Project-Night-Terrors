@@ -1,3 +1,6 @@
 [submodule "tools/libs/sdl"]
 	path = tools/libs/sdl
 	url = https://github.com/openfl/libsdl.git
+[submodule "project/lib/vorbis"]
+	path = project/lib/vorbis
+	url = https://github.com/native-toolkit/vorbis

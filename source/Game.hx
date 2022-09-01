@@ -9,7 +9,8 @@ import states.IFeshStates;
 @:setupGame([
     "source/backend",
 	"libs",
-	"tools/libs"
+	"tools/libs",
+    "project"
 ])
 
 class Game extends Scene {

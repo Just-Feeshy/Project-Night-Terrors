@@ -1,7 +1,6 @@
 <xml>
     <files id="haxe">
-        <include name='build_libs.xml' />
-
-        <compilervalue name="-I" value='${SOURCE_DIR}/cpp/' />
+        <set name="NATIVE_TOOLKIT_PATH" value="${TOOLS_DIR}">
+        <include name="${PROJECT_DIR}/Build.xml" />
     </files>
 </xml>
