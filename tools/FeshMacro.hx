@@ -95,8 +95,6 @@ class FeshMacro {
         }
 
         for(m in curClass.get().meta.get()) {
-            trace(m.name);
-
             switch(m.name) {
                 case ":setupGame":
                     if(GAME_INIT) {
@@ -111,7 +109,7 @@ class FeshMacro {
                                 kind: FVar(macro : String, macro $v{ Std.string(Date.now().getTime())}),
                             });
 
-                            fields = cppXML("project/Build.xml", m.params[0].getValue());
+                            fields = cppXML("source/backend/cpp/build_cpp.xml", m.params[0].getValue());
                         }
                     }
 

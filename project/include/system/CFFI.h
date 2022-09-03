@@ -5,7 +5,10 @@
 #define HL_NAME(n) lime_##n
 #include <hl.h>
 #undef DEFINE_PRIM
+
+#ifndef DEFINE_HL_PRIM
 #define DEFINE_HL_PRIM(t, name, args) DEFINE_PRIM_WITH_NAME(t, name, args, name)
+#endif
 
 typedef vdynamic hl_vdynamic;
 typedef vobj hl_vobj;

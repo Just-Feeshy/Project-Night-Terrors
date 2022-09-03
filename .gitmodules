@@ -1,9 +1,6 @@
 [submodule "project/lib/vorbis"]
 	path = project/lib/vorbis
 	url = https://github.com/native-toolkit/vorbis
-[submodule "project/lib/openal"]
-	path = project/lib/openal
-	url = https://github.com/native-toolkit/sdl
 [submodule "project/lib/curl"]
 	path = project/lib/curl
 	url = https://github.com/native-toolkit/curl
