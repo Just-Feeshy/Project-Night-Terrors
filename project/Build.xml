@@ -82,7 +82,7 @@
 			<compilerflag value="-DLIME_CURL" />
 			<compilerflag value="-DCURL_STATICLIB" />
 
-			<file name="src/net/curl/CURLBindings.cpp" />
+			<file name="${PROJECT_DIR}src/net/curl/CURLBindings.cpp" />
 
 		</section>
 
@@ -287,7 +287,7 @@
 
 		<compilerflag value="-I${PROJECT_DIR}/include/" />
 
-		<depend name="${PROJECT_DIR}/include/app/ApplicationEvent.h" />
+		<!--<depend name="${PROJECT_DIR}/include/app/ApplicationEvent.h" />
 		<depend name="${PROJECT_DIR}/include/graphics/utils/ImageDataUtil.h" />
 		<depend name="${PROJECT_DIR}/include/graphics/Image.h" />
 		<depend name="${PROJECT_DIR}/include/graphics/ImageBuffer.h" />
@@ -317,7 +317,7 @@
 		<depend name="${PROJECT_DIR}/include/ui/WindowEvent.h" />
 		<depend name="${PROJECT_DIR}/include/utils/ArrayBufferView.h" />
 		<depend name="${PROJECT_DIR}/include/utils/Bytes.h" />
-		<depend name="${PROJECT_DIR}/include/hx/CFFIExt.h" />
+		<depend name="${PROJECT_DIR}/include/hx/CFFIExt.h" />-->
 
 		<file name="${PROJECT_DIR}/src/app/ApplicationEvent.cpp" />
 		<file name="${PROJECT_DIR}/src/graphics/utils/ImageDataUtil.cpp" />

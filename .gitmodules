@@ -55,3 +55,6 @@
 [submodule "project/lib/mojoal"]
 	path = project/lib/mojoal
 	url = https://github.com/native-toolkit/mojoal
+[submodule "project/lib/openal"]
+	path = project/lib/openal
+	url = https://github.com/openfl/libopenal
