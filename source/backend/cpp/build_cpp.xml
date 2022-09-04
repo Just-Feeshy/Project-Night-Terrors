@@ -96,5 +96,180 @@
         <include name="${NATIVE_TOOLKIT_PATH}/webm/files.xml" />
         <include name="${NATIVE_TOOLKIT_PATH}/zlib/files.xml" />
         <include name="${NATIVE_TOOLKIT_PATH}/sdl/files.xml" />
+
+        <compilerflag value="-Iinclude" />
+
+		<section if="LIME_CAIRO">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/cairo/include" />
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/cairo/include/configs/default/" unless="windows || mac || linux" />
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/cairo/include/configs/linux/" if="linux" />
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/cairo/include/configs/windows/" if="windows" />
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/cairo/include/configs/mac/" if="mac" />
+			<compilerflag value="-DLIME_CAIRO" />
+			<compilerflag value="-DHAVE_CONFIG_H" />
+			<compilerflag value="-DCAIRO_WIN32_STATIC_BUILD" if="windows" />
+			<compilerflag value="-DCAIRO_HAS_FT_FONT" />
+
+		</section>
+
+		<section if="LIME_CURL">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/curl/include/" />
+			<compilerflag value="-DLIME_CURL" />
+			<compilerflag value="-DCURL_STATICLIB" />
+
+		</section>
+
+		<section if="LIME_EFSW">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/efsw/include/" />
+			<compilerflag value="-DLIME_EFSW" />
+		</section>
+
+		<section if="LIME_FAUDIO">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/faudio/src" />
+			<compilerflag value="-DLIME_FAUDIO" />
+		</section>
+
+		<section if="LIME_FREETYPE">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/freetype/include" />
+			<compilerflag value="-DLIME_FREETYPE" />
+
+			<section if="LIME_HARFBUZZ">
+
+				<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/harfbuzz/src" />
+				<compilerflag value="-DLIME_HARFBUZZ" />
+			</section>
+
+		</section>
+
+		<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/hashlink/src" />
+
+		<section if="LIME_HASHLINK">
+
+			<compilerflag value="-DLIME_HASHLINK" />
+
+		</section>
+
+		<section unless="LIME_HASHLINK">
+
+			<compilerflag value="-DLIBHL_EXPORTS" />
+
+		</section>
+
+		<section if="LIME_JPEG">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/jpeg/" />
+			<compilerflag value="-DLIME_JPEG" />
+		</section>
+
+		<section if="LIME_LZMA">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/lzma/src" />
+			<compilerflag value="-DLIME_LZMA" />
+		</section>
+
+		<section if="LIME_NEKO">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/neko/vm/" />
+			<compilerflag value="-DLIME_NEKO" />
+		</section>
+
+		<section if="LIME_OGG">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/ogg/include/" />
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/vorbis/include/" />
+			<compilerflag value="-DLIME_OGG" />
+		</section>
+
+		<section if="LIME_OPENAL">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/openal/include/" unless="LIME_MOJOAL || emscripten" />
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/mojoal/" if="LIME_MOJOAL" />
+			<compilerflag value="-DLIME_OPENAL" />
+			<compilerflag value="-DLIME_OPENALSOFT" if="LIME_OPENALSOFT" />
+			<compilerflag value="-DLIME_MOJOAL" if="LIME_MOJOAL" />
+			<compilerflag value="-DAL_LIBTYPE_STATIC=1" if="LIME_OPENALSOFT || LIME_MOJOAL" />
+			<compilerflag value="-DAL_ALEXT_PROTOTYPES" if="LIME_OPENALSOFT" />
+		</section>
+
+		<section if="LIME_OPENGL">
+
+			<compilerflag value="-DLIME_OPENGL" />
+			<compilerflag value="-I${DEVELOPER_DIR}/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS${TVOS_VER}.sdk/" if="tvos" />
+		</section>
+
+		<section if="LIME_PNG">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/png/" />
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/zlib/" />
+			<compilerflag value="-DLIME_PNG" />
+		</section>
+
+		<section if="LIME_SDL">
+			<section if="emscripten">
+
+				<compilerflag value="-s" />
+				<compilerflag value="USE_SDL=2" />
+
+			</section>
+
+			<section unless="emscripten">
+
+				<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/" />
+				<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/default/" unless="windows || mac || linux || rpi" />
+				<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/linux/" if="linux" unless="rpi" />
+				<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/windows/" if="windows" unless="winrt" />
+				<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/mac/" if="mac" />
+				<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/rpi/" if="rpi" />
+				<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/winrt/" if="winrt" />
+
+				<compilerflag value="-DHAVE_LIBC" />
+
+			</section>
+
+			<section if="rpi">
+
+				<compilerflag value="-I/opt/vc/include" />
+				<compilerflag value="-I/opt/vc/include/interface/vcos/pthreads" />
+				<compilerflag value="-I/opt/vc/include/interface/vmcs_host/linux" />
+				<compilerflag value="-lbrcmGLESv2" />
+				<compilerflag value="-lbrcmEGL" />
+				<compilerflag value="-Wl,--no-undefined -lm -L/opt/vc/lib -lbcm_host -ldl -lpthread -lrt" />
+
+			</section>
+
+			<compilerflag value="-DLIME_SDL" />
+			<compilerflag value="-DNATIVE_TOOLKIT_SDL_ANGLE" if="NATIVE_TOOLKIT_SDL_ANGLE" />
+			<compilerflag value="-D__IPHONEOS__" if="ios || tvos" />
+			<compilerflag value="-D__APPLETVOS__" if="tvos" />
+			<compilerflag value="-DAPPLETV" if="tvos" />
+		</section>
+
+		<section if="LIME_TINYFILEDIALOGS">
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/tinyfiledialogs/" />
+			<compilerflag value="-DLIME_TINYFILEDIALOGS" />
+		</section>
+
+		<section if="LIME_VORBIS">
+			<files id="native-toolkit-vorbis" if="LIME_VORBIS" />
+			<include name="${PROJECT_DIR}/lib/vorbis/files.xml" />
+
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/ogg/include/" />
+			<compilerflag value="-I${NATIVE_TOOLKIT_PATH}/vorbis/include/" />
+			<compilerflag value="-DLIME_VORBIS" />
+		</section>
+
+		<section if="LIME_ZLIB">
+
+			<compilerflag value="-DSTATIC_LINK" if="emscripten || ios || tvos" />
+			<compilerflag value="-DLIME_ZLIB" />
+		</section>
+
+		<compilerflag value="-I${PROJECT_DIR}/include/" />
     </files>
 </xml>

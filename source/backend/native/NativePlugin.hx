@@ -1,6 +1,6 @@
 package backend.native;
 
-@:include("ExternalInterface.cpp ")
+@:include("ExternalInterface.cpp")
 extern class NativePlugin {
     
 }
