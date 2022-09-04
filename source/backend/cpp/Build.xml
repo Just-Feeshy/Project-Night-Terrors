@@ -271,5 +271,6 @@
 		</section>
 
 		<compilerflag value="-I${PROJECT_DIR}/include/" />
+		<compilerflag value="-I${PROJECT_DIR}/src/" />
     </files>
 </xml>

@@ -54,13 +54,12 @@
 #endif
 
 #include <cstdlib>
+#include <iostream>
 
 DEFINE_KIND (k_finalizer);
 
 
 namespace lime {
-
-
 	void gc_application (value handle) {
 
 		Application* application = (Application*)val_data (handle);
@@ -176,6 +175,7 @@ namespace lime {
 
 
 	value lime_application_create () {
+		std::cout << "hehe" << std::endl;
 
 		Application* application = CreateApplication ();
 		return CFFIPointer (application, gc_application);

@@ -42,7 +42,7 @@ class FeshMacro {
     }
 
     #if !display
-    static var CPP_DIR:String = "source/backend/cpp/build_cpp.xml";
+    static var CPP_DIR:String = "source/backend/test/Build.xml";
     static var GAME_INIT:Bool = false;
 
     public static function cppXML(directory:String, dirDefs:Array<String>):Array<Field> {
@@ -109,7 +109,7 @@ class FeshMacro {
                                 kind: FVar(macro : String, macro $v{ Std.string(Date.now().getTime())}),
                             });
 
-                            fields = cppXML("source/backend/cpp/build_cpp.xml", m.params[0].getValue());
+                            fields = cppXML(CPP_DIR, m.params[0].getValue());
                         }
                     }
 

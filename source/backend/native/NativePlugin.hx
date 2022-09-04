@@ -1,6 +1,6 @@
 package backend.native;
 
 @:include("ExternalInterface.cpp")
-extern class NativePlugin {
-    
+class NativePlugin {
+    public static var lime_test = cpp.Lib.load("foo", "CPP_ForeignFunction", 1);
 }
