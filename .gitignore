@@ -1,12 +1,7 @@
 export/
 source/backend/.DS_Store
 source/.DS_Store
-tools/obj
+project/obj
 .DS_Store
 
-ndll/Linux64\.ndll\.hash
-ndll/Linux\.ndll\.hash
-ndll/Windows64\.ndll\.hash
-ndll/Windows\.ndll\.hash
-ndll/Mac64\.ndll\.hash
-ndll/Mac\.ndll\.hash
+*.hash
