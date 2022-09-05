@@ -1,7 +1,7 @@
 export/
-source/backend/.DS_Store
-source/.DS_Store
 project/obj
 .DS_Store
 
+*.DS_Store
+*.ndll
 *.hash

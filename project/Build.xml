@@ -20,18 +20,13 @@
     </files>
 
     <target id="LIB" output="spoopy-engine" tool="linker" toolid="${STD_MODULE_LINK}">
-        <ext value=".ndll" unless="static_link" />
 
-	    <files id="spoopy" />
+        <section unless="static_link">
+            <ext value=".ndll" />
+            <files id="spoopy" />
 
-        <outdir name="../ndll/Mac64" if="macos HXCPP_M64" />
-        <outdir name="../ndll/Mac" if="macos HXCPP_M32" />
-
-        <outdir name="../ndll/Windows64" if="windows HXCPP_M64" />
-        <outdir name="../ndll/Windows" if="windows HXCPP_M32" />
-
-        <outdir name="../ndll/Linux64" if="linux HXCPP_M64" />
-        <outdir name="../ndll/Linux" if="linux HXCPP_M32" />
+            <outdir name="../" />
+        </section>
     </target>
 
     <target id="default">

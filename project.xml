@@ -25,10 +25,6 @@
 	<haxeflag name="--macro" value="haxe.macro.Compiler.addGlobalMetadata('', '@:build(tools.FeshMacro.setupMeta())')" unless="html5" />
 	<haxeflag name="--macro" value="tools.FeshMacro.setupDefs()" />
 
-	<!-- _____________________________ NDLL Settings ____________________________ -->
-
-	<!--<ndll name="spoopy-engine" />-->
-
 	<!-- _____________________________ Path Settings ____________________________ -->
 	
 	<source path="libs" />
@@ -36,6 +32,22 @@
 	<source path="project" />
 	
 	<assets path="assets" />
+
+	<!--<section if="32">
+		<assets path="ndll/Windows" rename="" if="windows" />
+		<assets path="ndll/Mac" rename="" if="macos" />
+		<assets path="ndll/Linux" rename="" if="linux" />
+	</section>
+
+	<section unless="32">
+		<assets path="ndll/Windows64" rename="" if="windows" />
+		<assets path="ndll/Mac64" rename="" if="macos" />
+		<assets path="ndll/Linux64" rename="" if="linux" />
+	</section>-->
+
+	<!-- _____________________________ NDLL Settings ____________________________ -->
+
+	<ndll name="spoopy-engine" unless="static_link" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

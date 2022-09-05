@@ -57,7 +57,7 @@ class FeshMacro {
                             newFields.push({
                                 name: '__touch', pos: Context.currentPos(),
                                 doc: null, meta: [], access: [APrivate, AStatic, AInline],
-                                kind: FVar(macro : String, macro $v{ Std.string(Date.now().getTime())}),
+                                kind: FVar(macro : String, macro $v{Std.string(Date.now().getTime())}),
                             });
                         }
                     }
