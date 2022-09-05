@@ -2,7 +2,7 @@ cd project
 
 haxelib run hxcpp Build.xml
 
-rm -Rf "obj";
+rm -Rf "obj"
 
 cd ../
 
