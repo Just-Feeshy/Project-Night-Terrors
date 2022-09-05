@@ -1,6 +1,5 @@
 package backend.native;
 
-@:include("ExternalInterface.cpp")
 class NativePlugin {
-    public static var lime_test = cpp.Lib.load("foo", "CPP_ForeignFunction", 1);
+    public static var lime_test = cpp.Lib.load("spoopy-engine", "CPP_ForeignFunction", 1);
 }

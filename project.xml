@@ -25,6 +25,10 @@
 	<haxeflag name="--macro" value="haxe.macro.Compiler.addGlobalMetadata('', '@:build(tools.FeshMacro.setupMeta())')" unless="html5" />
 	<haxeflag name="--macro" value="tools.FeshMacro.setupDefs()" />
 
+	<!-- _____________________________ NDLL Settings ____________________________ -->
+
+	<!--<ndll name="spoopy-engine" />-->
+
 	<!-- _____________________________ Path Settings ____________________________ -->
 	
 	<source path="libs" />

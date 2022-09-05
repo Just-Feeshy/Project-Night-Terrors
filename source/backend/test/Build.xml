@@ -1,6 +1,0 @@
-<xml>
-    <files id="files">
-	    <compilerflag value="-Iinclude"/>
-	    <file name="Foreign.cpp" />
-    </files>
-</xml>

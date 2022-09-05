@@ -19,23 +19,19 @@
 	    <file name="../source/backend/test/Foo.cpp" />
     </files>
 
-    <compiler id="default">
-	    <objdir value="../obj/32" if="HXCPP_M32"/>
-	    <objdir value="../obj/64" if="HXCPP_M64"/>
-    </compiler>
-
     <target id="LIB" output="spoopy-engine" tool="linker" toolid="${STD_MODULE_LINK}">
-        <ext value=".ndll" />
+        <ext value=".ndll" unless="static_link" />
+
 	    <files id="spoopy" />
 
-        <outdir name="../../../ndll/Mac64" if="macos HXCPP_M64" />
-        <outdir name="../../../ndll/Mac" if="macos HXCPP_M32" />
+        <outdir name="../ndll/Mac64" if="macos HXCPP_M64" />
+        <outdir name="../ndll/Mac" if="macos HXCPP_M32" />
 
-        <outdir name="../../../ndll/Windows64" if="windows HXCPP_M64" />
-        <outdir name="../../../ndll/Windows" if="windows HXCPP_M32" />
+        <outdir name="../ndll/Windows64" if="windows HXCPP_M64" />
+        <outdir name="../ndll/Windows" if="windows HXCPP_M32" />
 
-        <outdir name="../../../ndll/Linux64" if="linux HXCPP_M64" />
-        <outdir name="../../../ndll/Linux" if="linux HXCPP_M32" />
+        <outdir name="../ndll/Linux64" if="linux HXCPP_M64" />
+        <outdir name="../ndll/Linux" if="linux HXCPP_M32" />
     </target>
 
     <target id="default">

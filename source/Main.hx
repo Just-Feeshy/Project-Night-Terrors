@@ -13,7 +13,7 @@ class Main extends Application {
 		game.initFramerate(60, 60);
 		onCreateWindow.add(game.initWindow.bind());
 		
-		//NativePlugin.lime_test();
+		NativePlugin.lime_test();
 	}
 
 	public function init():Void {
