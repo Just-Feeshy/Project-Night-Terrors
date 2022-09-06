@@ -17,9 +17,8 @@ using haxe.macro.ExprTools;
 #end
 
 private enum BuildEnums {
-    ENABLED_GLAD;
-    ENABLED_SDL;
-    ENABLED_APP;
+    DISABLED_GLAD;
+    DISABLED_SDL;
 }
 
 /*
@@ -31,11 +30,9 @@ class FeshMacro {
         Context.fatalError('Unsupported Haxe version! Supported versions are 4.0.5 or newer! (Found: ${Context.definedValue("haxe_ver")}).', (macro null).pos);
         #end
         
-        if(Context.defined("cpp") && !Context.defined("cppia")) {
-            enableEnum(ENABLED_GLAD); //Change this in the future.
-
-            enableEnum(ENABLED_SDL);
-            enableEnum(ENABLED_APP);
+        if(!Context.defined("cpp")) {
+            disableEnum(DISABLED_GLAD); //Change this in the future.
+            disableEnum(DISABLED_SDL);
         }
     }
 
@@ -69,7 +66,7 @@ class FeshMacro {
     }
     #end
 
-    static inline function enableEnum(define:BuildEnums) {
+    static inline function disableEnum(define:BuildEnums) {
         var def_String:String = Std.string(define);
         Compiler.define(def_String);
     }

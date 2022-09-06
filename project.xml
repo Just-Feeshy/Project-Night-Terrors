@@ -2,7 +2,7 @@
 <project>
 	<!-- _____________________________ NDLL Settings ____________________________ -->
 
-	<ndll name="spoopy" unless="static_link" />
+	<!--<ndll name="spoopy" unless="static_link" />-->
 
 	<!-- ____________________________ Application Settings ___________________________ -->
 
@@ -33,15 +33,13 @@
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 	
-	<source path="libs" />
 	<source path="source" />
-	<source path="project" />
-	
 	<assets path="assets" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="lime" />
+	<haxelib name="spoopy-engine" />
 
 	<!-- _____________________________ Build Config ____________________________ -->
 
