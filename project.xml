@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
+	<!-- _____________________________ NDLL Settings ____________________________ -->
+
+	<ndll name="spoopy" unless="static_link" />
+
+	<!-- ____________________________ Application Settings ___________________________ -->
+
 	<meta title="Spoopy Game" package="com.feeshy.spoopyengine" version="0.0.1" company="Feeshmora" />
 	<app main="Main" path="export" file="SpoopyEngine" />
 
@@ -32,22 +38,6 @@
 	<source path="project" />
 	
 	<assets path="assets" />
-
-	<!--<section if="32">
-		<assets path="ndll/Windows" rename="" if="windows" />
-		<assets path="ndll/Mac" rename="" if="macos" />
-		<assets path="ndll/Linux" rename="" if="linux" />
-	</section>
-
-	<section unless="32">
-		<assets path="ndll/Windows64" rename="" if="windows" />
-		<assets path="ndll/Mac64" rename="" if="macos" />
-		<assets path="ndll/Linux64" rename="" if="linux" />
-	</section>-->
-
-	<!-- _____________________________ NDLL Settings ____________________________ -->
-
-	<ndll name="spoopy-engine" unless="static_link" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

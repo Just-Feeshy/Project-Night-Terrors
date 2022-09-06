@@ -1,9 +1,16 @@
+#ifndef STATIC_LINK
+#define IMPLEMENT_API
+#endif
+
+#include <hx/CFFIPrime.h>
 #include <hx/CFFI.h>
+
 #include <iostream>
 
-value CPP_ForeignFunction(value haxeVal) {
-    std::cout << haxeVal << std::endl;
-    return haxeVal;
+namespace spoopy {
+    int hehe_funny(int haxeValue) {
+        std::cout << "haha funni" << std::endl;
+        return 0;
+    }
+    DEFINE_PRIME1(hehe_funny);
 }
-
-DEFINE_PRIM(CPP_ForeignFunction, 1);

@@ -1,4 +1,7 @@
 <xml>
+    <set name="tool" value="exe" unless="iphone"/>
+	<set name="tool" value="static" if="iphone"/>
+
     <include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 
     <section if="windows">
@@ -14,16 +17,16 @@
         <include name="${HXCPP}/toolchain/linux-toolchain.xml"/>
     </section>
 
-    <files id="spoopy">
+    <files id="spoopy-engine">
         <compilerflag value="-Iinclude"/>
 	    <file name="../source/backend/test/Foo.cpp" />
     </files>
 
-    <target id="LIB" output="spoopy-engine" tool="linker" toolid="${STD_MODULE_LINK}">
+    <target id="LIB" output="spoopy" tool="linker" toolid="${STD_MODULE_LINK}">
 
         <section unless="static_link">
             <ext value=".ndll" />
-            <files id="spoopy" />
+            <files id="spoopy-engine" />
 
             <outdir name="../" />
         </section>
