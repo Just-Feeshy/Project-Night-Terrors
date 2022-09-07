@@ -26,11 +26,6 @@
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
 
-	<!-- _____________________________ Flag Settings ____________________________ -->
-
-	<haxeflag name="--macro" value="haxe.macro.Compiler.addGlobalMetadata('', '@:build(tools.FeshMacro.setupMeta())')" unless="html5" />
-	<haxeflag name="--macro" value="tools.FeshMacro.setupDefs()" />
-
 	<!-- _____________________________ Path Settings ____________________________ -->
 	
 	<source path="source" />
