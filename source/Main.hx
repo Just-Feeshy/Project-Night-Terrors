@@ -1,7 +1,6 @@
 package;
 
 import lime.app.Application;
-import backend.cffi.SpoopyCFFI;
 
 import spoopy.ApplicationPlugin;
 
