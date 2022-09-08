@@ -2,7 +2,6 @@ package;
 
 import lime.graphics.RenderContext;
 import lime.system.System;
-import lime.ui.Window;
 
 import states.IFeshStates;
 import spoopy.display.WindowStage;
@@ -13,7 +12,12 @@ class Scene {
     /**
     * Backend Stuff
     */
+<<<<<<< HEAD
     @:noCompletion private var _renderer:WindowStage = null;
+=======
+    @:noCompletion private var _windowStage:WindowStage;
+
+>>>>>>> 80c560f8ee44c9e7e2e2b59dfa44893eee79b9b7
     @:noCompletion private var _render:Bool = false;
 
     /**
