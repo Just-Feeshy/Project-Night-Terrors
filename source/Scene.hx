@@ -5,6 +5,7 @@ import lime.system.System;
 import lime.ui.Window;
 
 import states.IFeshStates;
+import spoopy.display.WindowStage;
 
 class Scene {
     var counter:Int = 0;
@@ -12,6 +13,7 @@ class Scene {
     /**
     * Backend Stuff
     */
+    @:noCompletion private var _renderer:WindowStage = null;
     @:noCompletion private var _render:Bool = false;
 
     /**
@@ -60,8 +62,6 @@ class Scene {
     
     var _startTime:Int = 0;
 
-    var window:Window;
-
     public function new(_stateClass:Class<IFeshStates>, fullscreen:Bool = false) {
         this._stateClass = _stateClass;
 
@@ -103,14 +103,12 @@ class Scene {
         _daState.onUpdate(elapsed);
     }
 
-    public function init(window:Window):Void {
+    public function init():Void {
         _startTime = System.getTimer();
         _averageDeltaTime = ticks();
 
-        resizeScene(window.width, window.height);
-
         #if desktop
-        window.fullscreen = _openFullscreen;
+        _renderer.fullscreen = _openFullscreen;
         #end
 
         switchState(_stateClass);
@@ -125,7 +123,7 @@ class Scene {
 		#end
 
         #if mobile
-        resizeScene(window.width, window.height); //Just incase if I'mma make this mobile.
+        resizeScene(_renderer.width, _renderer.height); //Just incase if I'mma make this mobile.
         #end
 
         _onLostFocus = false;
@@ -136,7 +134,7 @@ class Scene {
     }
 
     public function initWindow(window:Window):Void {
-        this.window = window;
+        _renderer = new WindowStage(window);
         __initLimeEvents(window);
     }
 
@@ -158,7 +156,7 @@ class Scene {
     }
 
     @:noCompletion private function __initLimeEvents(window:Window):Void {
-        if (this.window != window || window == null) { 
+        if (window == null) { 
             return;
         }
 
@@ -170,22 +168,22 @@ class Scene {
 	}
 
 	@:noCompletion private function __onLimeWindowActivate(window:Window):Void {
-        if (this.window != window || window == null) { 
+        if (window == null) { 
             return;
         }
 
-		init(window);
-		resizeScene(window.width, window.height);
+		init();
 
+		resizeScene(_renderer.width, _renderer.height);
 		window.onActivate.remove(__onLimeWindowActivate.bind(window));
 	}
 
 	@:noCompletion function __onLimeWindowResize(window:Window, width:Int, height:Int):Void {
-        if (this.window != window || window == null) { 
+        if (window == null) { 
             return;
         }
 
-		resizeScene(width, height);
+		resizeScene(_renderer.width, _renderer.height);
 	}
 
 	@:noCompletion function __onLimeRenderContext(context:RenderContext):Void {
@@ -220,7 +218,7 @@ class Scene {
 	}
 
 	@:noCompletion function __onLimeWindowFocusIn(window:Window):Void {
-        if (this.window != window || window == null) { 
+        if (window == null) { 
             return;
         }
 
@@ -228,7 +226,7 @@ class Scene {
 	}
 
 	@:noCompletion function __onLimeWindowFocusOut(window:Window):Void {
-        if (this.window != window || window == null) { 
+        if (window == null) { 
             return;
         }
 
@@ -243,8 +241,8 @@ class Scene {
 
         stepFramerate = Std.int(Math.abs(value));
 
-        if(window != null) {
-            window.frameRate = stepFramerate;
+        if(_renderer != null) {
+            _renderer.frameRate = stepFramerate;
         }
 
         Fesh.maxAccumulation = Fesh.fixedTimestep / stepFramerate - 1;

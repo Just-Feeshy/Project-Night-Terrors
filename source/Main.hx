@@ -2,7 +2,7 @@ package;
 
 import lime.app.Application;
 
-import spoopy.ApplicationPlugin;
+import spoopy.SpoopyEngine;
 
 class Main extends Application {
 	var game:Game; //Make da game itself.
@@ -10,7 +10,7 @@ class Main extends Application {
 	public function new() {
 		super();
 
-		ApplicationPlugin.init(this);
+		SpoopyEngine.init();
 
 		game = new Game(Sandbox, #if debug false #else true #end);
 		game.initFramerate(60, 60);
