@@ -1,5 +1,6 @@
 package;
 
+import lime.ui.Window;
 import lime.graphics.RenderContext;
 import lime.system.System;
 
