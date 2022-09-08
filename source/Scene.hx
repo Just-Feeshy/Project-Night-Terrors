@@ -2,9 +2,9 @@ package;
 
 import lime.graphics.RenderContext;
 import lime.system.System;
-import lime.ui.Window;
 
 import states.IFeshStates;
+import spoopy.display.WindowStage;
 
 class Scene {
     var counter:Int = 0;
@@ -12,6 +12,8 @@ class Scene {
     /**
     * Backend Stuff
     */
+    @:noCompletion private var _windowStage:WindowStage;
+
     @:noCompletion private var _render:Bool = false;
 
     /**
@@ -59,8 +61,6 @@ class Scene {
     var _onLostFocus:Bool;
     
     var _startTime:Int = 0;
-
-    var window:Window;
 
     public function new(_stateClass:Class<IFeshStates>, fullscreen:Bool = false) {
         this._stateClass = _stateClass;
