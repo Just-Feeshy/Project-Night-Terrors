@@ -10,13 +10,13 @@ import spoopy.display.WindowStage;
 class Scene {
     var counter:Int = 0;
     
-    /**
+    /*
     * Backend Stuff
     */
     @:noCompletion private var _renderer:WindowStage = null;
     @:noCompletion private var _render:Bool = false;
 
-    /**
+    /*
     * How many times the game should to step each second.
     * More steps USUALLY means greater responsiveness.
     */
