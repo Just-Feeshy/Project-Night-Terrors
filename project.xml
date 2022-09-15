@@ -34,7 +34,7 @@
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="lime" />
-	<haxelib name="spoopy-engine" />
+	<haxelib name="spoopy" />
 
 	<!-- _____________________________ Build Config ____________________________ -->
 
