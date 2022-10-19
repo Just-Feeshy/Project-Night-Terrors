@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	<!-- _____________________________ NDLL Settings ____________________________ -->
-
-	<!--<ndll name="spoopy" unless="static_link" />-->
-
 	<!-- ____________________________ Application Settings ___________________________ -->
 
 	<meta title="Spoopy Game" package="com.feeshy.spoopyengine" version="0.0.1" company="Feeshmora" />
@@ -35,6 +31,7 @@
 
 	<haxelib name="lime" />
 	<haxelib name="spoopy" />
+	<haxelib name="haxebullet" />
 
 	<!-- _____________________________ Build Config ____________________________ -->
 
