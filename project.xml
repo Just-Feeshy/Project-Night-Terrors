@@ -31,7 +31,6 @@
 
 	<haxelib name="lime" />
 	<haxelib name="spoopy" />
-	<haxelib name="haxebullet" />
 
 	<!-- _____________________________ Build Config ____________________________ -->
 
