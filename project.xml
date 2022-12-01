@@ -2,7 +2,7 @@
 <project>
 	<!-- ____________________________ Application Settings ___________________________ -->
 
-	<meta title="Spoopy Game" package="com.feeshy.spoopyengine" version="0.0.1" company="Feeshmora" />
+	<meta title="Project Night Terrors" package="com.feeshy.spoopyengine" version="0.0.1" company="Feeshmora" />
 	<app main="Main" path="export" file="SpoopyEngine" />
 
 	<!-- ____________________________ Window Settings ___________________________ -->
@@ -37,5 +37,4 @@
 	<set name="BUILD_DIR" value="export/debug" if="debug" />
 	<set name="BUILD_DIR" value="export/release" if="release" />
 	<set name="BUILD_DIR" value="export/32bit" if="32" />
-	
 </project>

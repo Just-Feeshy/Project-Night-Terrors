@@ -13,7 +13,6 @@ class Scene {
     /*
     * Backend Stuff
     */
-    @:noCompletion private var _renderer:WindowStage = null;
     @:noCompletion private var _render:Bool = false;
 
     /*
@@ -26,6 +25,11 @@ class Scene {
     public var height(default, null):Int = 0;
 
     public var elapsed(default, null):Float = 0;
+
+    /**
+    * Window renderer from the spoopy engine.
+    */
+    public var _renderer(default, null):WindowStage = null;
 
     /**
     * Whether the scene should be paused when focus is lost or not.
